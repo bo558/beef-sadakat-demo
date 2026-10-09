@@ -35,7 +35,7 @@ export function Onboarding() {
           </div>
         </div>
         <div className="relative -mt-16 flex flex-1 flex-col px-6 pb-[max(24px,env(safe-area-inset-bottom))]">
-          <h1 className="font-display text-[46px] uppercase leading-[0.95] text-balance">
+          <h1 className="font-display text-[46px] uppercase leading-[1.04] text-balance">
             Her burger
             <br />
             <span className="text-beef">bir damga.</span>

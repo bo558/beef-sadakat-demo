@@ -40,7 +40,7 @@ function Landing({ go }: { go: (p: string) => void }) {
         </div>
         <div className="mt-auto pt-16">
           <div className="text-xs font-extrabold uppercase tracking-[0.22em] text-beef">Sadakat uygulaması · etkileşimli prototip</div>
-          <h1 className="mt-3 max-w-3xl font-display text-[clamp(48px,9vw,104px)] uppercase leading-[0.9]">
+          <h1 className="mt-3 max-w-3xl font-display text-[clamp(48px,9vw,104px)] uppercase leading-[1.02]">
             Her burger
             <br />
             <span className="text-beef">bir damga.</span>
