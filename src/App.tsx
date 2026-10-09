@@ -35,7 +35,9 @@ function Landing({ go }: { go: (p: string) => void }) {
       <img src={asset("brand/dis-cephe.jpg")} alt="" className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-25" />
       <div className="absolute inset-0 bg-gradient-to-b from-ink/60 via-ink/85 to-ink" />
       <div className="relative mx-auto flex min-h-[calc(100dvh-80px)] max-w-5xl flex-col">
-        <LogoPlaceholder />
+        <div className="self-start">
+          <LogoPlaceholder />
+        </div>
         <div className="mt-auto pt-16">
           <div className="text-xs font-extrabold uppercase tracking-[0.22em] text-beef">Sadakat uygulaması · etkileşimli prototip</div>
           <h1 className="mt-3 max-w-3xl font-display text-[clamp(48px,9vw,104px)] uppercase leading-[0.9]">
