@@ -1,0 +1,95 @@
+@import "tailwindcss";
+
+/* BEEF kimliği: Instagram, tabela ve ambalajdan alınan renkler */
+@theme {
+  --color-beef: #fbcc0a; /* marka sarısı (öne çıkan hikâye kapakları) */
+  --color-beef-deep: #e0b000;
+  --color-beef-soft: #fff4c2;
+  --color-ink: #0e0d0b; /* logo konturu / kampanya zemini */
+  --color-ink-2: #181613;
+  --color-ink-3: #24211c;
+  --color-ink-line: #34302a;
+  --color-smoke: #a8a196; /* koyu zeminde ikincil metin */
+  --color-paper: #f7f5f0; /* panel zemini */
+  --color-paper-line: #e6e2d9;
+  --color-wrap: #e0904f; /* ambalaj kâğıdındaki turuncu boynuzlar (yaklaşık) */
+  /* mekân duvarındaki oluklu sac renkleri: yalnızca kutlama anlarında */
+  --color-wall-pink: #d6246e;
+  --color-wall-orange: #f26a1b;
+  --color-wall-grey: #9aa3a8;
+  --color-ok: #2f8a4a;
+  --color-ok-soft: #e1f2e5;
+  --color-bad: #c62828;
+  --color-bad-soft: #fbe4e2;
+
+  --font-display: "Anton", "Arial Narrow", Impact, sans-serif;
+  --font-sans: "Manrope", system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  --animate-stamp: stamp 0.55s cubic-bezier(0.2, 1.6, 0.4, 1) both;
+  --animate-rise: rise 0.35s ease-out both;
+  --animate-pop: pop 0.5s cubic-bezier(0.2, 1.4, 0.4, 1) both;
+}
+
+@keyframes stamp {
+  0% { transform: scale(2.2) rotate(-18deg); opacity: 0; }
+  60% { transform: scale(0.9) rotate(4deg); opacity: 1; }
+  100% { transform: scale(1) rotate(var(--r, -6deg)); opacity: 1; }
+}
+@keyframes rise {
+  from { transform: translateY(12px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+@keyframes pop {
+  from { transform: scale(0.6); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+@keyframes spin-slow { to { transform: rotate(360deg); } }
+@keyframes scanline {
+  0% { top: 8%; }
+  50% { top: 88%; }
+  100% { top: 8%; }
+}
+
+:root { --demo-bar: 30px; }
+html, body, #root { height: 100%; }
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  background: var(--color-ink);
+  color: #fff;
+  -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: transparent;
+}
+button { cursor: pointer; }
+button:disabled { cursor: not-allowed; }
+:focus-visible { outline: 3px solid var(--color-beef); outline-offset: 2px; }
+
+.tabular { font-variant-numeric: tabular-nums; }
+
+/* Ambalaj kâğıdından esinlenen çapraz çizgi dokusu (baskı dosyası gelince değiştirilecek) */
+.wrap-texture {
+  background-image: repeating-linear-gradient(
+    -24deg,
+    rgb(14 13 11 / 0.07) 0 2px,
+    transparent 2px 22px
+  );
+}
+.burst {
+  background: repeating-conic-gradient(from 0deg, rgb(14 13 11 / 0.09) 0 8deg, transparent 8deg 16deg);
+  animation: spin-slow 40s linear infinite;
+}
+.wall-stripes {
+  background: linear-gradient(
+    90deg,
+    var(--color-wall-pink) 0 25%,
+    var(--color-wall-orange) 25% 50%,
+    var(--color-beef) 50% 75%,
+    var(--color-wall-grey) 75%
+  );
+}
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { scrollbar-width: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+}
