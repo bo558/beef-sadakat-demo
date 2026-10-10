@@ -20,9 +20,9 @@ function DemoBar() {
   return (
     <div
       role="note"
-      className="sticky top-0 z-[90] flex h-[var(--demo-bar)] items-center justify-center gap-2 bg-wall-pink px-3 text-center text-[11px] font-extrabold leading-tight text-white sm:text-xs"
+      className="sticky top-0 z-[90] flex h-[var(--demo-bar)] items-center justify-center gap-2 bg-wall-pink px-3 text-center text-[10.5px] font-semibold leading-tight text-white sm:text-[11px]"
     >
-      <span className="rounded bg-white/20 px-1.5 py-0.5 tracking-[0.12em]">DEMO</span>
+      <span className="rounded bg-white/20 px-1.5 py-px tracking-[0.12em]">DEMO</span>
       <span className="min-w-0 truncate sm:hidden">Gerçek uygulama değil · Bilgiler gönderilmez</span>
       <span className="hidden min-w-0 truncate sm:inline">Gerçek BEEF uygulaması değildir · Girilen bilgiler hiçbir yere gönderilmez</span>
     </div>
@@ -31,42 +31,43 @@ function DemoBar() {
 
 function Landing({ go }: { go: (p: string) => void }) {
   return (
-    <div className="relative min-h-[calc(100%-var(--demo-bar))] overflow-hidden bg-ink px-4 py-10 text-white sm:px-8">
+    <div className="relative min-h-[calc(100%-var(--demo-bar))] overflow-hidden bg-ink px-4 py-8 text-white sm:px-8">
       <img src={asset("brand/dis-cephe.jpg")} alt="" className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-25" />
       <div className="absolute inset-0 bg-gradient-to-b from-ink/60 via-ink/85 to-ink" />
       <div className="relative mx-auto flex min-h-[calc(100dvh-80px)] max-w-5xl flex-col">
         <div className="self-start">
           <LogoPlaceholder />
         </div>
-        <div className="mt-auto pt-16">
-          <div className="text-xs font-extrabold uppercase tracking-[0.22em] text-beef">Sadakat uygulaması · etkileşimli prototip</div>
-          <h1 className="mt-3 max-w-3xl font-display text-[clamp(48px,9vw,104px)] uppercase leading-[1.02]">
-            Her burger
+        <div className="mt-auto pt-12">
+          <div className="t-label text-smoke">Sadakat uygulaması · etkileşimli prototip</div>
+          {/* Instagram kampanya başlıkları gibi: ilk satır sarı, ikinci satır beyaz */}
+          <h1 className="t-display mt-2 max-w-3xl text-[clamp(34px,5.5vw,60px)] leading-[1.04]">
+            <span className="text-beef">Her burger</span>
             <br />
-            <span className="text-beef">bir damga.</span>
+            bir damga!
           </h1>
-          <p className="mt-5 max-w-xl text-[15px] leading-relaxed text-smoke">
+          <p className="mt-3 max-w-lg text-sm leading-relaxed text-smoke">
             Müşteri uygulaması ve işletme paneli aynı örnek veriyi paylaşır. Panelde verilen damga, müşteri kartında anında görünür. Gerçek veritabanı, SMS veya kasa bağlantısı yoktur.
           </p>
-          <div className="mt-10 grid gap-4 md:grid-cols-2">
-            <button onClick={() => go("app")} className="group flex items-center gap-5 rounded-3xl bg-beef p-6 text-left text-ink">
-              <Smartphone className="h-10 w-10 shrink-0" />
+          <div className="mt-7 grid max-w-3xl gap-3 md:grid-cols-2">
+            <button onClick={() => go("app")} className="group flex items-center gap-4 rounded-xl bg-beef p-4 text-left text-ink">
+              <Smartphone className="h-7 w-7 shrink-0" />
               <span className="flex-1">
-                <span className="block font-display text-3xl uppercase leading-none">Müşteri uygulaması</span>
-                <span className="mt-1 block text-sm font-semibold text-ink/70">Kayıt, dijital kart, QR, ödüller, geçmiş, profil</span>
+                <span className="t-h2 block text-[18px]">Müşteri uygulaması</span>
+                <span className="mt-0.5 block text-xs text-ink/65">Kayıt, dijital kart, QR, ödüller, geçmiş, profil</span>
               </span>
-              <ArrowRight className="h-6 w-6 transition-transform group-hover:translate-x-1" />
+              <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
             </button>
-            <button onClick={() => go("panel/kasa")} className="group flex items-center gap-5 rounded-3xl bg-white p-6 text-left text-ink">
-              <LayoutDashboard className="h-10 w-10 shrink-0" />
+            <button onClick={() => go("panel/kasa")} className="group flex items-center gap-4 rounded-xl bg-white p-4 text-left text-ink">
+              <LayoutDashboard className="h-7 w-7 shrink-0" />
               <span className="flex-1">
-                <span className="block font-display text-3xl uppercase leading-none">İşletme paneli</span>
-                <span className="mt-1 block text-sm font-semibold text-ink/70">Kasa, müşteriler, işlemler, kampanya, şubeler</span>
+                <span className="t-h2 block text-[18px]">İşletme paneli</span>
+                <span className="mt-0.5 block text-xs text-ink/65">Kasa, müşteriler, işlemler, kampanya, şubeler</span>
               </span>
-              <ArrowRight className="h-6 w-6 transition-transform group-hover:translate-x-1" />
+              <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
             </button>
           </div>
-          <p className="mt-6 text-xs text-smoke">Logo yer tutucudur; orijinal boynuzlu BEEF BURGER logosunun vektör dosyası bekleniyor. Fotoğraflar BEEF'in Instagram hesabından alınmıştır.</p>
+          <p className="mt-5 text-[11px] text-smoke">Logo yer tutucudur; orijinal boynuzlu BEEF BURGER logosunun vektör dosyası bekleniyor. Fotoğraflar BEEF'in Instagram hesabından alınmıştır.</p>
         </div>
       </div>
     </div>

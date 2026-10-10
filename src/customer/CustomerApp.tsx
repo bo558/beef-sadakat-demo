@@ -101,7 +101,7 @@ function AppInner({ sub, go, rootGo }: { sub: string; go: (p: string) => void; r
 
   return (
     <div className="relative flex h-full flex-col">
-      <header className="flex shrink-0 items-center justify-between px-5 pb-3 pt-[max(14px,env(safe-area-inset-top))]">
+      <header className="flex shrink-0 items-center justify-between px-4 pb-2 pt-[max(10px,env(safe-area-inset-top))]">
         <button onClick={() => go("")} aria-label="Ana sayfa">
           <LogoPlaceholder size="sm" />
         </button>
@@ -109,17 +109,17 @@ function AppInner({ sub, go, rootGo }: { sub: string; go: (p: string) => void; r
           <MobileDemo go={rootGo} />
           <button
           onClick={() => go("profil")}
-          className={`grid h-11 w-11 place-items-center rounded-full font-display text-base ${sub === "profil" ? "bg-beef text-ink" : "bg-ink-2 text-white ring-1 ring-ink-line"}`}
+          className={`grid h-9 w-9 place-items-center rounded-full font-display text-[13px] font-semibold ${sub === "profil" ? "bg-beef text-ink" : "bg-ink-2 text-white ring-1 ring-ink-line"}`}
           aria-label="Profil"
         >
           {initials(me.name)}
           </button>
         </div>
       </header>
-      <main ref={scroller} className="flex-1 overflow-y-auto pb-28" key={sub}>
+      <main ref={scroller} className="flex-1 overflow-y-auto pb-24" key={sub}>
         <div className="animate-rise">{screen}</div>
       </main>
-      <nav className="absolute inset-x-0 bottom-0 border-t border-ink-line bg-ink/95 px-2 pb-[max(10px,env(safe-area-inset-bottom))] pt-2 backdrop-blur" aria-label="Ana menü">
+      <nav className="absolute inset-x-0 bottom-0 border-t border-ink-line bg-ink/95 px-2 pb-[max(6px,env(safe-area-inset-bottom))] pt-1 backdrop-blur" aria-label="Ana menü">
         <ul className="grid grid-cols-5">
           {TABS.map((t) => {
             const active = sub === t.key || (t.key === "" && !sub);
@@ -129,11 +129,11 @@ function AppInner({ sub, go, rootGo }: { sub: string; go: (p: string) => void; r
                 <li key={t.key} className="grid place-items-center">
                   <button
                     onClick={() => go("qr")}
-                    className={`-mt-7 grid h-16 w-16 place-items-center rounded-full ring-4 ring-ink transition-transform active:scale-95 ${active ? "bg-white text-ink" : "bg-beef text-ink"}`}
+                    className={`-mt-5 grid h-[52px] w-[52px] place-items-center rounded-full ring-4 ring-ink transition-transform active:scale-95 ${active ? "bg-white text-ink" : "bg-beef text-ink"}`}
                     aria-label="QR kodumu göster"
                     aria-current={active ? "page" : undefined}
                   >
-                    <QrCode className="h-7 w-7" />
+                    <QrCode className="h-6 w-6" />
                   </button>
                 </li>
               );
@@ -141,7 +141,7 @@ function AppInner({ sub, go, rootGo }: { sub: string; go: (p: string) => void; r
               <li key={t.key}>
                 <button
                   onClick={() => go(t.key)}
-                  className={`flex h-14 w-full flex-col items-center justify-center gap-1 text-[11px] font-bold ${active ? "text-beef" : "text-smoke"}`}
+                  className={`flex h-12 w-full flex-col items-center justify-center gap-0.5 text-[10.5px] font-medium ${active ? "text-beef" : "text-smoke"}`}
                   aria-current={active ? "page" : undefined}
                 >
                   <Icon className="h-5 w-5" />
@@ -178,24 +178,24 @@ function Celebration({ rewardName, onClose }: { rewardName: string; onClose: (to
       </button>
       <div className="relative flex flex-1 flex-col items-center justify-center px-6 text-center">
         <div className="animate-pop relative">
-          <img src={asset("brand/burger-ambalaj.jpg")} alt="" className="h-44 w-44 rounded-full object-cover ring-8 ring-ink" />
-          <span className="absolute -right-2 -top-2 grid h-14 w-14 rotate-12 place-items-center rounded-full bg-ink text-beef">
-            <Sparkles className="h-7 w-7" />
+          <img src={asset("brand/burger-ambalaj.jpg")} alt="" className="h-36 w-36 rounded-full object-cover ring-[6px] ring-ink" />
+          <span className="absolute -right-1 -top-1 grid h-11 w-11 rotate-12 place-items-center rounded-full bg-ink text-beef">
+            <Sparkles className="h-5 w-5" />
           </span>
         </div>
-        <div className="mt-8 text-xs font-extrabold uppercase tracking-[0.2em]">Kart doldu</div>
-        <h2 className="mt-1 font-display text-[52px] uppercase leading-[0.9]">
+        <div className="t-label mt-6">Kart doldu</div>
+        <h2 className="t-display mt-1.5 text-[34px]">
           Menün
           <br />
           bizden!
         </h2>
-        <p className="mt-3 max-w-[17rem] font-semibold">{rewardName} ödülün Ödüllerim'e eklendi. Kartın yeniden başladı.</p>
+        <p className="mt-2.5 max-w-[16rem] text-sm font-medium">{rewardName} ödülün Ödüllerim'e eklendi. Kartın yeniden başladı.</p>
       </div>
       <div className="relative grid gap-2 px-6 pb-[max(24px,env(safe-area-inset-bottom))]">
-        <button onClick={() => onClose(true)} className="h-14 rounded-2xl bg-ink font-extrabold text-beef">
+        <button onClick={() => onClose(true)} className="h-12 rounded-xl bg-ink text-sm font-semibold text-beef">
           Ödülümü gör
         </button>
-        <button onClick={() => onClose(false)} className="h-12 rounded-2xl font-bold">
+        <button onClick={() => onClose(false)} className="h-11 rounded-xl text-sm font-semibold">
           Sonra
         </button>
       </div>
@@ -208,16 +208,16 @@ function Celebration({ rewardName, onClose }: { rewardName: string; onClose: (to
 function SideInfo({ go }: { go: (p: string) => void }) {
   return (
     <div className="max-w-[300px] text-white">
-      <div className="text-[11px] font-extrabold uppercase tracking-[0.2em] text-beef">Müşteri uygulaması · prototip</div>
-      <h1 className="mt-3 font-display text-5xl uppercase leading-[0.95]">Beef Kart</h1>
-      <p className="mt-4 text-sm leading-relaxed text-smoke">
+      <div className="t-label text-beef">Müşteri uygulaması · prototip</div>
+      <h1 className="t-display mt-2 text-[32px]">Beef Kart</h1>
+      <p className="mt-3 text-[13px] leading-relaxed text-smoke">
         Mobil öncelikli PWA prototipi. Tüm veriler örnektir ve yalnızca bu tarayıcıda saklanır. SMS, veritabanı ve kasa bağlantısı yoktur.
       </p>
       <div className="mt-6 grid gap-2">
-        <button onClick={() => go("panel/kasa")} className="flex h-12 items-center gap-2 rounded-xl bg-white px-4 text-sm font-extrabold text-ink">
+        <button onClick={() => go("panel/kasa")} className="flex h-10 items-center gap-2 rounded-lg bg-white px-3.5 text-[13px] font-semibold text-ink">
           <LayoutDashboard className="h-4 w-4" /> İşletme paneline geç
         </button>
-        <a href="#/panel/kasa" target="_blank" rel="noreferrer" className="flex h-12 items-center gap-2 rounded-xl px-4 text-sm font-bold text-smoke ring-1 ring-ink-line hover:text-white">
+        <a href="#/panel/kasa" target="_blank" rel="noreferrer" className="flex h-10 items-center gap-2 rounded-lg px-3.5 text-[13px] font-medium text-smoke ring-1 ring-ink-line hover:text-white">
           Paneli yeni sekmede aç (canlı senkron)
         </a>
       </div>
@@ -254,8 +254,8 @@ function useDemoActions() {
 function DemoDock({ go }: { go: (p: string) => void }) {
   const { me, add, fill, reset, loginDemo } = useDemoActions();
   return (
-    <div className="w-[260px] rounded-3xl bg-ink-2 p-5 text-white ring-1 ring-ink-line">
-      <div className="flex items-center gap-2 text-[11px] font-extrabold uppercase tracking-[0.2em] text-beef">
+    <div className="w-[240px] rounded-2xl bg-ink-2 p-4 text-white ring-1 ring-ink-line">
+      <div className="t-label flex items-center gap-2 text-beef">
         <Wand2 className="h-4 w-4" /> Demo kontrolleri
       </div>
       {me ? (
@@ -280,7 +280,7 @@ function DemoDock({ go }: { go: (p: string) => void }) {
 
 function DemoBtn({ onClick, children }: { onClick: () => void; children: React.ReactNode }) {
   return (
-    <button onClick={onClick} className="h-11 rounded-xl bg-ink-3 px-4 text-left text-sm font-bold hover:bg-beef hover:text-ink">
+    <button onClick={onClick} className="h-10 rounded-lg bg-ink-3 px-3.5 text-left text-[13px] font-medium hover:bg-beef hover:text-ink">
       {children}
     </button>
   );
@@ -293,16 +293,16 @@ function MobileDemo({ go }: { go: (p: string) => void }) {
     <div className="lg:hidden">
       <button
         onClick={() => setOpen(true)}
-        className="flex h-9 items-center gap-1.5 rounded-full bg-ink-3 px-3 text-xs font-extrabold text-beef ring-1 ring-beef/40"
+        className="flex h-8 items-center gap-1.5 rounded-full bg-ink-3 px-2.5 text-[11px] font-semibold text-beef ring-1 ring-beef/30"
         aria-label="Demo kontrollerini aç"
       >
-        <Wand2 className="h-4 w-4" /> Demo
+        <Wand2 className="h-3.5 w-3.5" /> Demo
       </button>
       {open && (
         <div className="fixed inset-0 z-[70] flex items-end bg-black/60" onClick={() => setOpen(false)}>
           <div className="animate-rise w-full rounded-t-3xl bg-ink-2 p-5 pb-[max(20px,env(safe-area-inset-bottom))] ring-1 ring-ink-line" onClick={(e) => e.stopPropagation()}>
             <div className="flex items-center justify-between">
-              <div className="text-[11px] font-extrabold uppercase tracking-[0.2em] text-beef">Demo kontrolleri</div>
+              <div className="t-label text-beef">Demo kontrolleri</div>
               <button onClick={() => setOpen(false)} className="grid h-9 w-9 place-items-center rounded-full bg-ink-3" aria-label="Kapat">
                 <X className="h-4 w-4" />
               </button>

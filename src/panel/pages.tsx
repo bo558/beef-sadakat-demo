@@ -141,9 +141,9 @@ export function RegisterPage({ preselect }: { preselect?: string }) {
     .slice(0, 6);
 
   return (
-    <div className="grid gap-6">
+    <div className="grid gap-5">
       <PageHead title="Kasa" sub={`${branch.name} şubesi · ${me.name}`} />
-      <div className="grid gap-6 xl:grid-cols-[minmax(0,420px)_minmax(0,1fr)]">
+      <div className="grid gap-5 xl:grid-cols-[minmax(0,420px)_minmax(0,1fr)]">
         {/* 1. Müşteriyi tanı */}
         <Card title="1 · Müşteriyi bul">
           <div className="grid grid-cols-3 gap-1 rounded-xl bg-paper p-1 ring-1 ring-paper-line" role="tablist">
@@ -154,7 +154,7 @@ export function RegisterPage({ preselect }: { preselect?: string }) {
                 ["search", "Ara", Search],
               ] as const
             ).map(([k, l, I]) => (
-              <button key={k} role="tab" aria-selected={mode === k} onClick={() => setMode(k)} className={`flex h-10 items-center justify-center gap-1.5 rounded-lg text-sm font-extrabold ${mode === k ? "bg-ink text-beef" : "text-ink/60"}`}>
+              <button key={k} role="tab" aria-selected={mode === k} onClick={() => setMode(k)} className={`flex h-9 items-center justify-center gap-1.5 rounded-md text-[13px] font-semibold ${mode === k ? "bg-ink text-beef" : "text-ink/60"}`}>
                 <I className="h-4 w-4" /> {l}
               </button>
             ))}
@@ -162,19 +162,19 @@ export function RegisterPage({ preselect }: { preselect?: string }) {
 
           {mode === "qr" && (
             <div className="mt-4">
-              <div className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-ink">
+              <div className="relative aspect-[16/9] overflow-hidden rounded-xl bg-ink sm:aspect-[4/3]">
                 <div className="absolute inset-0 opacity-25" style={{ background: "radial-gradient(circle at 50% 40%, #3a352c, #0e0d0b 70%)" }} />
-                <div className="absolute inset-[14%] rounded-2xl">
+                <div className="absolute inset-[14%] rounded-xl">
                   {["left-0 top-0 border-l-4 border-t-4 rounded-tl-2xl", "right-0 top-0 border-r-4 border-t-4 rounded-tr-2xl", "left-0 bottom-0 border-l-4 border-b-4 rounded-bl-2xl", "right-0 bottom-0 border-r-4 border-b-4 rounded-br-2xl"].map((c) => (
                     <span key={c} className={`absolute h-10 w-10 border-beef ${c}`} />
                   ))}
                   <span className="absolute inset-x-3 h-0.5 bg-beef shadow-[0_0_16px_4px_rgba(251,204,10,0.6)]" style={{ animation: "scanline 2.4s ease-in-out infinite" }} />
                 </div>
               </div>
-              <p className="mt-2 text-center text-xs font-bold text-ink/60" aria-live="polite">
+              <p className="mt-2 text-center text-xs font-semibold text-ink/60" aria-live="polite">
                 {scanning ? "Kod okunuyor…" : "Kamera simülasyonu · müşterinin QR'ını çerçeveye getirin"}
               </p>
-              <div className="mt-4 text-[11px] font-extrabold uppercase tracking-[0.12em] text-ink/50">Demo: kameraya gösterilen QR'lar</div>
+              <div className="mt-4 text-[11px] font-semibold uppercase tracking-[0.12em] text-ink/50">Demo: kameraya gösterilen QR'lar</div>
               <div className="mt-2 grid gap-2">
                 {nearby.map((c, i) => (
                   <button
@@ -183,9 +183,9 @@ export function RegisterPage({ preselect }: { preselect?: string }) {
                     disabled={!!scanning}
                     className={`flex items-center gap-3 rounded-xl p-2.5 text-left ring-1 transition-colors ${customerId === c.id ? "bg-beef/20 ring-beef" : "bg-white ring-paper-line hover:bg-paper"}`}
                   >
-                    <span className="grid h-9 w-9 place-items-center rounded-full bg-ink font-display text-sm text-beef">{initials(c.name)}</span>
+                    <span className="grid h-9 w-9 place-items-center rounded-full bg-ink font-display text-[13px] font-semibold text-beef">{initials(c.name)}</span>
                     <span className="min-w-0 flex-1">
-                      <span className="block truncate text-sm font-bold">{c.name}</span>
+                      <span className="block truncate text-sm font-semibold">{c.name}</span>
                       <span className="block text-xs text-ink/50">{i === 0 && c.id === state.session.customerId ? "Müşteri uygulamasında açık olan üye" : maskPhone(c.phone)}</span>
                     </span>
                     {scanning === c.id ? <ScanLine className="h-4 w-4 animate-pulse" /> : <ArrowRight className="h-4 w-4 text-ink/40" />}
@@ -208,7 +208,7 @@ export function RegisterPage({ preselect }: { preselect?: string }) {
               }}
             >
               <Field label="QR altındaki 6 haneli kod" htmlFor="rg-code" hint="Kodlar 60 saniyede bir yenilenir (müşteri uygulaması › QR ekranı).">
-                <input id="rg-code" inputMode="numeric" value={code} onChange={(e) => setCode(e.target.value.replace(/\D/g, "").slice(0, 6))} placeholder="••• •••" className={`${inputCls} h-14 text-center font-display text-3xl tracking-[0.3em]`} />
+                <input id="rg-code" inputMode="numeric" value={code} onChange={(e) => setCode(e.target.value.replace(/\D/g, "").slice(0, 6))} placeholder="••• •••" className={`${inputCls} h-12 text-center font-display text-2xl font-semibold tracking-[0.3em]`} />
               </Field>
               {codeErr && <p className="text-sm font-semibold text-bad">{codeErr}</p>}
               <Btn type="submit" disabled={code.length !== 6} tone="dark" size="lg">
@@ -226,8 +226,8 @@ export function RegisterPage({ preselect }: { preselect?: string }) {
                 {matches.slice(0, 6).map((c) => (
                   <li key={c.id}>
                     <button onClick={() => pick(c.id)} className="flex w-full items-center gap-3 rounded-xl bg-paper p-2.5 text-left hover:bg-beef/20">
-                      <span className="grid h-9 w-9 place-items-center rounded-full bg-ink font-display text-sm text-beef">{initials(c.name)}</span>
-                      <span className="flex-1 text-sm font-bold">{c.name}</span>
+                      <span className="grid h-9 w-9 place-items-center rounded-full bg-ink font-display text-[13px] font-semibold text-beef">{initials(c.name)}</span>
+                      <span className="flex-1 text-sm font-semibold">{c.name}</span>
                       <span className="text-xs text-ink/50 tabular">{maskPhone(c.phone)}</span>
                     </button>
                   </li>
@@ -244,12 +244,12 @@ export function RegisterPage({ preselect }: { preselect?: string }) {
         {/* 2. İşlem */}
         <div className="grid min-w-0 content-start gap-6">
           {!customer ? (
-            <div className="grid min-h-[320px] place-items-center rounded-2xl border-2 border-dashed border-paper-line p-8 text-center">
+            <div className="grid min-h-[320px] place-items-center rounded-xl border-2 border-dashed border-paper-line p-8 text-center">
               <div>
-                <div className="mx-auto grid h-16 w-16 place-items-center rounded-full bg-beef text-ink">
-                  <ScanLine className="h-8 w-8" />
+                <div className="mx-auto grid h-12 w-12 place-items-center rounded-full bg-beef text-ink">
+                  <ScanLine className="h-6 w-6" />
                 </div>
-                <p className="mt-4 font-display text-2xl uppercase">Müşteriyi okutun</p>
+                <p className="t-h2 mt-3">Müşteriyi okutun</p>
                 <p className="mt-1 text-sm text-ink/60">QR, 6 haneli kod ya da arama ile üyeyi bulun.</p>
               </div>
             </div>
@@ -257,7 +257,7 @@ export function RegisterPage({ preselect }: { preselect?: string }) {
             <>
               <CustomerStrip c={customer} onClear={() => setCustomerId(null)} />
               {fb && <FeedbackBanner fb={fb} onClose={() => setFb(null)} />}
-              <div className="grid gap-6 2xl:grid-cols-2">
+              <div className="grid gap-5 2xl:grid-cols-2">
                 <Card title="2 · Siparişi doğrula, damga ver">
                   <form onSubmit={submit} className="grid gap-4">
                     <div className="grid grid-cols-2 gap-3">
@@ -286,7 +286,7 @@ export function RegisterPage({ preselect }: { preselect?: string }) {
                         setReceipt(`${branch.id === "br-bursa" ? "B" : "G"}-${Math.floor(Math.random() * 9000 + 50000)}`);
                         setAmount(String(r.minSpend + 160));
                       }}
-                      className="text-left text-xs font-bold text-ink/50 underline underline-offset-4"
+                      className="text-left text-xs font-semibold text-ink/50 underline underline-offset-4"
                     >
                       Örnek fiş bilgisi doldur
                     </button>
@@ -299,7 +299,7 @@ export function RegisterPage({ preselect }: { preselect?: string }) {
                       <div key={g.id} className="flex items-center gap-3 rounded-xl bg-beef/15 p-3 ring-1 ring-beef">
                         <Gift className="h-5 w-5 shrink-0" />
                         <div className="min-w-0 flex-1">
-                          <div className="truncate text-sm font-extrabold">{state.rewards.find((x) => x.id === g.rewardId)?.name}</div>
+                          <div className="truncate text-sm font-semibold">{state.rewards.find((x) => x.id === g.rewardId)?.name}</div>
                           <div className="text-xs text-ink/60">Son {daysLeft(g.expiresAt)} gün · tavan {fmtTL(state.rewards.find((x) => x.id === g.rewardId)?.cap ?? 0)}</div>
                         </div>
                         <Btn size="sm" tone="dark" onClick={() => setConfirm(g.id)}>
@@ -309,7 +309,7 @@ export function RegisterPage({ preselect }: { preselect?: string }) {
                     ))}
                     {availableGrants(state, customer.id).length === 0 && <p className="text-sm text-ink/50">Kullanılabilir ödül yok.</p>}
                     {lastRedeemed && (
-                      <button onClick={() => doRedeem(lastRedeemed)} className="mt-1 rounded-xl border border-dashed border-bad/40 p-3 text-left text-xs font-bold text-bad">
+                      <button onClick={() => doRedeem(lastRedeemed)} className="mt-1 rounded-xl border border-dashed border-bad/40 p-3 text-left text-xs font-semibold text-bad">
                         Demo: aynı ödül kodunu tekrar okut (çift kullanım denemesi)
                       </button>
                     )}
@@ -325,9 +325,9 @@ export function RegisterPage({ preselect }: { preselect?: string }) {
                 const c = state.customers.find((x) => x.id === e.customerId);
                 const st = state.staff.find((x) => x.id === e.staffId);
                 return (
-                  <li key={e.id} className="flex items-center gap-3 px-5 py-3 text-sm">
+                  <li key={e.id} className="flex items-center gap-3 px-4 py-2.5 text-sm">
                     <span className={`grid h-8 w-8 place-items-center rounded-full ${e.amount > 0 ? "bg-beef" : "bg-bad-soft text-bad"}`}>{e.amount > 0 ? <Hamburger className="h-4 w-4" /> : <Undo2 className="h-4 w-4" />}</span>
-                    <button onClick={() => c && pick(c.id)} className="min-w-0 flex-1 truncate text-left font-bold hover:underline">
+                    <button onClick={() => c && pick(c.id)} className="min-w-0 flex-1 truncate text-left font-semibold hover:underline">
                       {c?.name}
                     </button>
                     <span className="hidden text-ink/50 sm:inline">{st?.name}</span>
@@ -350,9 +350,9 @@ export function RegisterPage({ preselect }: { preselect?: string }) {
                 <div className="flex items-center gap-4">
                   {rw.image ? <img src={asset(rw.image)} alt="" className="h-20 w-20 rounded-xl object-cover" /> : <div className="grid h-20 w-20 place-items-center rounded-xl bg-beef"><Gift className="h-8 w-8" /></div>}
                   <div>
-                    <div className="font-display text-2xl uppercase leading-none">{rw.name}</div>
+                    <div className="t-h1">{rw.name}</div>
                     <div className="mt-1 text-sm text-ink/60">{rw.description}</div>
-                    <div className="mt-1 text-sm font-bold">Fiyat tavanı: {fmtTL(rw.cap)}</div>
+                    <div className="mt-1 text-sm font-semibold">Fiyat tavanı: {fmtTL(rw.cap)}</div>
                   </div>
                 </div>
                 <p className="rounded-xl bg-paper p-3 text-sm text-ink/70">
@@ -395,16 +395,16 @@ function CustomerStrip({ c, onClear }: { c: Customer; onClear: () => void }) {
   const visits = state.orders.filter((o) => o.customerId === c.id);
   const lastV = visits.sort((a, b) => b.createdAt.localeCompare(a.createdAt))[0];
   return (
-    <div className="flex flex-wrap items-center gap-4 rounded-2xl bg-ink p-4 text-white">
-      <span className="grid h-14 w-14 place-items-center rounded-full bg-beef font-display text-xl text-ink">{initials(c.name)}</span>
+    <div className="flex flex-wrap items-center gap-3 rounded-xl bg-ink p-3.5 text-white">
+      <span className="grid h-11 w-11 place-items-center rounded-full bg-beef font-display text-[15px] font-semibold text-ink">{initials(c.name)}</span>
       <div className="min-w-0 flex-1">
-        <div className="truncate font-display text-2xl uppercase leading-none">{c.name}</div>
-        <div className="mt-1 text-sm text-smoke tabular">
+        <div className="t-h1 truncate">{c.name}</div>
+        <div className="mt-0.5 text-xs text-smoke tabular">
           {maskPhone(c.phone)} · {visits.length} ziyaret{lastV ? ` · son ${fmtDate(lastV.createdAt)}` : ""}
         </div>
       </div>
       <div className="text-right">
-        <div className="font-display text-3xl text-beef tabular">
+        <div className="t-num-lg text-[24px] text-beef">
           {Math.min(balanceOf(state, c.id), state.rules.stampsRequired)}/{state.rules.stampsRequired}
         </div>
         <div className="text-xs text-smoke">damga</div>
@@ -420,11 +420,11 @@ function FeedbackBanner({ fb, onClose }: { fb: NonNullable<Feedback>; onClose: (
   const tone = fb.tone === "ok" ? "bg-ok text-white" : fb.tone === "bad" ? "bg-bad text-white" : "bg-beef text-ink";
   const Icon = fb.tone === "bad" ? CircleAlert : fb.tone === "reward" ? Gift : Check;
   return (
-    <div role="status" className={`animate-pop flex items-start gap-3 rounded-2xl p-4 ${tone}`}>
-      <Icon className="mt-0.5 h-6 w-6 shrink-0" />
+    <div role="status" className={`animate-pop flex items-start gap-2.5 rounded-xl p-3 ${tone}`}>
+      <Icon className="mt-0.5 h-5 w-5 shrink-0" />
       <div className="min-w-0 flex-1">
-        <div className="font-display text-xl uppercase leading-tight">{fb.title}</div>
-        <div className="text-sm font-semibold opacity-90">{fb.text}</div>
+        <div className="t-h2">{fb.title}</div>
+        <div className="text-[13px] opacity-90">{fb.text}</div>
       </div>
       <button onClick={onClose} className="grid h-8 w-8 place-items-center rounded-full bg-black/10" aria-label="Kapat">
         <X className="h-4 w-4" />
@@ -436,9 +436,9 @@ function FeedbackBanner({ fb, onClose }: { fb: NonNullable<Feedback>; onClose: (
 function Modal({ title, children, onClose }: { title: string; children: React.ReactNode; onClose: () => void }) {
   return (
     <div className="fixed inset-0 z-[80] grid place-items-end bg-black/50 p-0 sm:place-items-center sm:p-6" onClick={onClose}>
-      <div role="dialog" aria-modal aria-label={title} className="animate-rise w-full max-w-md rounded-t-3xl bg-white p-6 pb-[max(24px,env(safe-area-inset-bottom))] text-ink sm:rounded-3xl" onClick={(e) => e.stopPropagation()}>
+      <div role="dialog" aria-modal aria-label={title} className="animate-rise w-full max-w-md rounded-t-3xl bg-white p-6 pb-[max(24px,env(safe-area-inset-bottom))] text-ink sm:rounded-2xl" onClick={(e) => e.stopPropagation()}>
         <div className="mb-4 flex items-center justify-between">
-          <h2 className="text-[13px] font-extrabold uppercase tracking-[0.12em] text-ink/60">{title}</h2>
+          <h2 className="text-[13px] font-semibold uppercase tracking-[0.12em] text-ink/60">{title}</h2>
           <button onClick={onClose} className="grid h-9 w-9 place-items-center rounded-full bg-paper" aria-label="Kapat">
             <X className="h-4 w-4" />
           </button>
@@ -485,7 +485,7 @@ export function DashboardPage({ go }: { go: (p: string) => void }) {
   const withReward = members.filter((c) => availableGrants(state, c.id).length > 0);
 
   return (
-    <div className="grid gap-6">
+    <div className="grid gap-5">
       <PageHead
         title="Genel bakış"
         sub="Örnek verilerle hesaplanır."
@@ -498,7 +498,7 @@ export function DashboardPage({ go }: { go: (p: string) => void }) {
                   ["all", "Tüm şubeler"],
                 ] as const
               ).map(([k, l]) => (
-                <button key={k} onClick={() => setScope(k)} disabled={k === "all" && !can(["admin"])} className={`h-9 rounded-lg px-3 text-sm font-extrabold ${scope === k ? "bg-ink text-beef" : "text-ink/60 disabled:text-ink/25"}`}>
+                <button key={k} onClick={() => setScope(k)} disabled={k === "all" && !can(["admin"])} className={`h-9 rounded-lg px-3 text-sm font-semibold ${scope === k ? "bg-ink text-beef" : "text-ink/60 disabled:text-ink/25"}`}>
                   {l}
                 </button>
               ))}
@@ -512,7 +512,7 @@ export function DashboardPage({ go }: { go: (p: string) => void }) {
         <Kpi label="Ödül kullanım oranı" value={`%${grants30.length ? Math.round((redeemed / grants30.length) * 100) : 0}`} sub={`${redeemed}/${grants30.length} ödül · 90 gün`} />
         <Kpi label="Ortalama sepet" value={fmtTL(Math.round(avg))} sub={`${orders.length} doğrulanmış sipariş`} />
       </div>
-      <div className="grid gap-6 lg:grid-cols-[minmax(0,1.6fr)_minmax(0,1fr)]">
+      <div className="grid gap-5 lg:grid-cols-[minmax(0,1.6fr)_minmax(0,1fr)]">
         <Card title="Son 14 gün · verilen damga" action={<TrendingUp className="h-4 w-4 text-ink/40" />}>
           <svg viewBox="0 0 700 220" className="h-auto w-full" role="img" aria-label="Günlük damga sayısı grafiği">
             {[0, 0.5, 1].map((t) => (
@@ -547,7 +547,7 @@ export function DashboardPage({ go }: { go: (p: string) => void }) {
           <div className="grid gap-3">
             {buckets.map((b, i) => (
               <div key={b.l}>
-                <div className="flex justify-between text-sm font-bold">
+                <div className="flex justify-between text-sm font-semibold">
                   <span>{b.l} damga</span>
                   <span className="tabular">{b.n}</span>
                 </div>
@@ -559,17 +559,17 @@ export function DashboardPage({ go }: { go: (p: string) => void }) {
           </div>
           <div className="mt-5 grid grid-cols-2 gap-2">
             <button onClick={() => go("musteriler")} className="rounded-xl bg-beef/20 p-3 text-left ring-1 ring-beef">
-              <div className="font-display text-2xl tabular">{near.length}</div>
-              <div className="text-xs font-bold">ödüle 1–2 damga kalan</div>
+              <div className="t-num">{near.length}</div>
+              <div className="text-xs font-semibold">ödüle 1–2 damga kalan</div>
             </button>
             <button onClick={() => go("musteriler")} className="rounded-xl bg-paper p-3 text-left ring-1 ring-paper-line">
-              <div className="font-display text-2xl tabular">{withReward.length}</div>
-              <div className="text-xs font-bold">ödülü hazır bekleyen</div>
+              <div className="t-num">{withReward.length}</div>
+              <div className="text-xs font-semibold">ödülü hazır bekleyen</div>
             </button>
           </div>
         </Card>
       </div>
-      <Card title="Son hareketler" pad={false} action={<button onClick={() => go("islemler")} className="text-xs font-extrabold text-ink/60 hover:text-ink">Tümü →</button>}>
+      <Card title="Son hareketler" pad={false} action={<button onClick={() => go("islemler")} className="text-xs font-semibold text-ink/60 hover:text-ink">Tümü →</button>}>
         <LedgerTable rows={8} scopeAll={scope === "all"} compact />
       </Card>
     </div>
@@ -603,7 +603,7 @@ export function CustomersPage({ go }: { go: (p: string) => void }) {
   const sel = state.customers.find((c) => c.id === open);
 
   return (
-    <div className="grid gap-6">
+    <div className="grid gap-5">
       <PageHead title="Müşteriler" sub={`${state.customers.length} üye · örnek veri`} />
       <div className="flex flex-wrap items-center gap-3">
         <div className="relative min-w-[220px] flex-1">
@@ -622,50 +622,50 @@ export function CustomersPage({ go }: { go: (p: string) => void }) {
               ["new", "Yeni üyeler"],
             ] as const
           ).map(([k, l]) => (
-            <button key={k} onClick={() => setF(k)} className={`h-10 shrink-0 rounded-xl px-3.5 text-sm font-extrabold ${f === k ? "bg-ink text-beef" : "bg-white text-ink/60 ring-1 ring-paper-line"}`}>
+            <button key={k} onClick={() => setF(k)} className={`h-10 shrink-0 rounded-xl px-3.5 text-sm font-semibold ${f === k ? "bg-ink text-beef" : "bg-white text-ink/60 ring-1 ring-paper-line"}`}>
               {l}
             </button>
           ))}
         </div>
       </div>
-      <div className="overflow-x-auto rounded-2xl bg-white ring-1 ring-paper-line">
+      <div className="overflow-x-auto rounded-xl bg-white ring-1 ring-paper-line">
         <table className="w-full min-w-[760px] text-sm">
           <thead>
-            <tr className="border-b border-paper-line text-left text-[11px] font-extrabold uppercase tracking-[0.1em] text-ink/50">
-              <th className="px-5 py-3">Üye</th>
-              <th className="px-3 py-3">Telefon</th>
-              <th className="px-3 py-3">Kart</th>
-              <th className="px-3 py-3">Ödül</th>
-              <th className="px-3 py-3">Ziyaret</th>
-              <th className="px-3 py-3">Son ziyaret</th>
-              <th className="px-3 py-3">Şube</th>
+            <tr className="border-b border-paper-line text-left text-[11px] font-semibold uppercase tracking-[0.1em] text-ink/50">
+              <th className="px-4 py-2.5">Üye</th>
+              <th className="px-3 py-2.5">Telefon</th>
+              <th className="px-3 py-2.5">Kart</th>
+              <th className="px-3 py-2.5">Ödül</th>
+              <th className="px-3 py-2.5">Ziyaret</th>
+              <th className="px-3 py-2.5">Son ziyaret</th>
+              <th className="px-3 py-2.5">Şube</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-paper-line">
             {rows.map(({ c, bal, avail, last, visits }) => (
               <tr key={c.id} onClick={() => setOpen(c.id)} className="cursor-pointer hover:bg-paper">
-                <td className="px-5 py-3">
+                <td className="px-4 py-2.5">
                   <div className="flex items-center gap-3">
-                    <span className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-ink font-display text-sm text-beef">{initials(c.name)}</span>
-                    <span className="font-bold">{c.name}</span>
+                    <span className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-ink font-display text-[13px] font-semibold text-beef">{initials(c.name)}</span>
+                    <span className="font-semibold">{c.name}</span>
                     {state.session.customerId === c.id && <Badge tone="dark">Uygulamada</Badge>}
                   </div>
                 </td>
-                <td className="px-3 py-3 tabular text-ink/70">{maskPhone(c.phone)}</td>
-                <td className="px-3 py-3">
+                <td className="px-3 py-2.5 tabular text-ink/70">{maskPhone(c.phone)}</td>
+                <td className="px-3 py-2.5">
                   <div className="flex items-center gap-2">
                     <div className="h-2 w-20 overflow-hidden rounded-full bg-paper">
                       <div className="h-full rounded-full bg-ink" style={{ width: `${(Math.min(bal, r.stampsRequired) / r.stampsRequired) * 100}%` }} />
                     </div>
-                    <span className="font-bold tabular">
+                    <span className="font-semibold tabular">
                       {bal}/{r.stampsRequired}
                     </span>
                   </div>
                 </td>
-                <td className="px-3 py-3">{avail > 0 ? <Badge tone="beef">{avail} hazır</Badge> : <span className="text-ink/30">—</span>}</td>
-                <td className="px-3 py-3 tabular">{visits}</td>
-                <td className="px-3 py-3 text-ink/70">{last ? fmtDate(last) : "—"}</td>
-                <td className="px-3 py-3 text-ink/70">{state.branches.find((b) => b.id === c.homeBranchId)?.name}</td>
+                <td className="px-3 py-2.5">{avail > 0 ? <Badge tone="beef">{avail} hazır</Badge> : <span className="text-ink/30">—</span>}</td>
+                <td className="px-3 py-2.5 tabular">{visits}</td>
+                <td className="px-3 py-2.5 text-ink/70">{last ? fmtDate(last) : "—"}</td>
+                <td className="px-3 py-2.5 text-ink/70">{state.branches.find((b) => b.id === c.homeBranchId)?.name}</td>
               </tr>
             ))}
           </tbody>
@@ -687,9 +687,9 @@ function CustomerDrawer({ c, onClose, go }: { c: Customer; onClose: () => void; 
     <div className="fixed inset-0 z-[70] flex justify-end bg-black/40" onClick={onClose}>
       <div className="animate-rise h-full w-full max-w-[480px] overflow-y-auto bg-paper p-5 pt-[max(20px,env(safe-area-inset-top))]" onClick={(e) => e.stopPropagation()} role="dialog" aria-modal aria-label={c.name}>
         <div className="flex items-center gap-3">
-          <span className="grid h-14 w-14 place-items-center rounded-full bg-ink font-display text-xl text-beef">{initials(c.name)}</span>
+          <span className="grid h-11 w-11 place-items-center rounded-full bg-ink font-display text-[15px] font-semibold text-beef">{initials(c.name)}</span>
           <div className="min-w-0 flex-1">
-            <div className="truncate font-display text-2xl uppercase leading-none">{c.name}</div>
+            <div className="t-h1 truncate">{c.name}</div>
             <div className="mt-1 text-sm text-ink/60 tabular">{maskPhone(c.phone)}</div>
           </div>
           <button onClick={onClose} className="grid h-10 w-10 place-items-center rounded-full bg-white ring-1 ring-paper-line" aria-label="Kapat">
@@ -702,34 +702,34 @@ function CustomerDrawer({ c, onClose, go }: { c: Customer; onClose: () => void; 
         <div className="mt-4 grid grid-cols-3 gap-2">
           <Kpi label="Ziyaret" value={state.orders.filter((o) => o.customerId === c.id).length} />
           <Kpi label="Ödül" value={grants.length} />
-          <Kpi label="Harcama" value={<span className="text-2xl">{fmtTL(spent)}</span>} />
+          <Kpi label="Harcama" value={<span className="text-lg">{fmtTL(spent)}</span>} />
         </div>
         <Btn className="mt-4 w-full" size="lg" onClick={() => go(`kasa/${c.id}`)}>
           <ScanLine className="h-5 w-5" /> Kasada işle
         </Btn>
-        <div className="mt-5 grid gap-1 rounded-2xl bg-white p-4 text-sm ring-1 ring-paper-line">
-          <div className="text-[11px] font-extrabold uppercase tracking-[0.12em] text-ink/50">Üyelik ve izinler</div>
+        <div className="mt-5 grid gap-1 rounded-xl bg-white p-4 text-sm ring-1 ring-paper-line">
+          <div className="text-[11px] font-semibold uppercase tracking-[0.12em] text-ink/50">Üyelik ve izinler</div>
           <div className="flex justify-between"><span className="text-ink/60">Üyelik</span><b>{fmtDate(c.joinedAt)}</b></div>
           <div className="flex justify-between"><span className="text-ink/60">KVKK aydınlatma</span><b>{c.consents.kvkk ? "Onaylı" : "—"}</b></div>
           <div className="flex justify-between"><span className="text-ink/60">Ticari ileti (İYS)</span><b>{c.consents.marketing ? "İzinli" : "İzin yok"}</b></div>
         </div>
-        <h3 className="mt-6 text-[11px] font-extrabold uppercase tracking-[0.12em] text-ink/50">Ödüller</h3>
+        <h3 className="mt-6 text-[11px] font-semibold uppercase tracking-[0.12em] text-ink/50">Ödüller</h3>
         <ul className="mt-2 grid gap-1.5">
           {grants.map((g) => (
             <li key={g.id} className="flex items-center justify-between rounded-xl bg-white px-3 py-2.5 text-sm ring-1 ring-paper-line">
-              <span className="font-bold">{state.rewards.find((x) => x.id === g.rewardId)?.name}</span>
+              <span className="font-semibold">{state.rewards.find((x) => x.id === g.rewardId)?.name}</span>
               {g.status === "available" ? <Badge tone="beef">Hazır · {daysLeft(g.expiresAt)} gün</Badge> : g.status === "redeemed" ? <Badge tone="ok">Kullanıldı {fmtDate(g.redeemedAt!)}</Badge> : <Badge tone="bad">Süresi doldu</Badge>}
             </li>
           ))}
           {grants.length === 0 && <li className="text-sm text-ink/50">Henüz ödül yok.</li>}
         </ul>
-        <h3 className="mt-6 text-[11px] font-extrabold uppercase tracking-[0.12em] text-ink/50">Damga defteri</h3>
-        <ul className="mt-2 divide-y divide-paper-line rounded-2xl bg-white ring-1 ring-paper-line">
+        <h3 className="mt-6 text-[11px] font-semibold uppercase tracking-[0.12em] text-ink/50">Damga defteri</h3>
+        <ul className="mt-2 divide-y divide-paper-line rounded-xl bg-white ring-1 ring-paper-line">
           {ledger.map((e) => (
             <li key={e.id} className="flex items-center justify-between gap-3 px-3 py-2.5 text-sm">
-              <span className="font-bold">{TYPE_LABEL[e.type]}</span>
+              <span className="font-semibold">{TYPE_LABEL[e.type]}</span>
               <span className="ml-auto text-ink/50 tabular">{fmtDateTime(e.createdAt)}</span>
-              <span className={`w-10 text-right font-display text-lg tabular ${e.amount > 0 ? "" : "text-ink/40"}`}>{e.amount > 0 ? `+${e.amount}` : e.amount}</span>
+              <span className={`w-10 text-right font-display text-[15px] font-semibold tabular ${e.amount > 0 ? "" : "text-ink/40"}`}>{e.amount > 0 ? `+${e.amount}` : e.amount}</span>
             </li>
           ))}
         </ul>
@@ -772,15 +772,15 @@ function LedgerTable({ rows, scopeAll, compact, typeFilter = "all" }: { rows?: n
       <div className="overflow-x-auto">
         <table className={`w-full text-sm ${compact ? "min-w-[640px]" : "min-w-[860px]"}`}>
           <thead>
-            <tr className="border-b border-paper-line text-left text-[11px] font-extrabold uppercase tracking-[0.1em] text-ink/50">
-              <th className="px-5 py-3">Zaman</th>
-              <th className="px-3 py-3">İşlem</th>
-              <th className="px-3 py-3">Üye</th>
-              <th className="px-3 py-3">Fiş / tutar</th>
-              {!compact && <th className="px-3 py-3">Personel</th>}
-              {!compact && <th className="px-3 py-3">Şube</th>}
-              <th className="px-3 py-3 text-right">Damga</th>
-              {!compact && <th className="px-5 py-3" />}
+            <tr className="border-b border-paper-line text-left text-[11px] font-semibold uppercase tracking-[0.1em] text-ink/50">
+              <th className="px-4 py-2.5">Zaman</th>
+              <th className="px-3 py-2.5">İşlem</th>
+              <th className="px-3 py-2.5">Üye</th>
+              <th className="px-3 py-2.5">Fiş / tutar</th>
+              {!compact && <th className="px-3 py-2.5">Personel</th>}
+              {!compact && <th className="px-3 py-2.5">Şube</th>}
+              <th className="px-3 py-2.5 text-right">Damga</th>
+              {!compact && <th className="px-4 py-2.5" />}
             </tr>
           </thead>
           <tbody className="divide-y divide-paper-line">
@@ -790,22 +790,22 @@ function LedgerTable({ rows, scopeAll, compact, typeFilter = "all" }: { rows?: n
               const reversed = x.entry && isReversed(state, x.entry.id);
               return (
                 <tr key={x.id} className={reversed ? "text-ink/40" : ""}>
-                  <td className="whitespace-nowrap px-5 py-3 tabular text-ink/60">{fmtDateTime(x.at)}</td>
-                  <td className="px-3 py-3">
+                  <td className="whitespace-nowrap px-4 py-2.5 tabular text-ink/60">{fmtDateTime(x.at)}</td>
+                  <td className="px-3 py-2.5">
                     <Badge tone={x.kind === "earn" ? "beef" : x.kind === "redeem" ? "ok" : x.kind === "reversal" ? "bad" : x.kind === "convert" ? "dark" : "neutral"}>{TYPE_LABEL[x.kind]}</Badge>
-                    {reversed && <span className="ml-1.5 text-[11px] font-bold">geri alındı</span>}
+                    {reversed && <span className="ml-1.5 text-[11px] font-semibold">geri alındı</span>}
                   </td>
-                  <td className="px-3 py-3 font-bold">{c?.name}</td>
-                  <td className="px-3 py-3 tabular text-ink/60">{o ? `${o.receiptNo} · ${fmtTL(o.amount)}` : x.entry?.note ?? "—"}</td>
-                  {!compact && <td className="px-3 py-3 text-ink/60">{state.staff.find((s) => s.id === x.staffId)?.name ?? "Sistem"}</td>}
-                  {!compact && <td className="px-3 py-3 text-ink/60">{state.branches.find((b) => b.id === x.branchId)?.name}</td>}
-                  <td className="px-3 py-3 text-right font-display text-lg tabular">{x.amount === null ? "—" : x.amount > 0 ? `+${x.amount}` : x.amount}</td>
+                  <td className="px-3 py-2.5 font-semibold">{c?.name}</td>
+                  <td className="px-3 py-2.5 tabular text-ink/60">{o ? `${o.receiptNo} · ${fmtTL(o.amount)}` : x.entry?.note ?? "—"}</td>
+                  {!compact && <td className="px-3 py-2.5 text-ink/60">{state.staff.find((s) => s.id === x.staffId)?.name ?? "Sistem"}</td>}
+                  {!compact && <td className="px-3 py-2.5 text-ink/60">{state.branches.find((b) => b.id === x.branchId)?.name}</td>}
+                  <td className="px-3 py-2.5 text-right font-display text-[15px] font-semibold tabular">{x.amount === null ? "—" : x.amount > 0 ? `+${x.amount}` : x.amount}</td>
                   {!compact && (
-                    <td className="px-5 py-3 text-right">
+                    <td className="px-4 py-2.5 text-right">
                       {x.kind === "earn" && !reversed && (
                         <button
                           onClick={() => (can(["admin", "manager"]) ? (setRev(x.id), setNote("")) : toast("Geri alma için şube müdürü veya yönetici yetkisi gerekir.", "bad"))}
-                          className="inline-flex items-center gap-1 rounded-lg px-2 py-1 text-xs font-extrabold text-ink/50 hover:bg-bad-soft hover:text-bad"
+                          className="inline-flex items-center gap-1 rounded-lg px-2 py-1 text-xs font-semibold text-ink/50 hover:bg-bad-soft hover:text-bad"
                         >
                           <Undo2 className="h-3.5 w-3.5" /> Geri al
                         </button>
@@ -858,16 +858,16 @@ export function LedgerPage() {
   const [type, setType] = useState("all");
   const [all, setAll] = useState(false);
   return (
-    <div className="grid gap-6">
+    <div className="grid gap-5">
       <PageHead title="Sadakat işlemleri" sub="Damga defteri silinmez; düzeltmeler ters kayıtla yapılır." />
       <div className="flex flex-wrap items-center gap-2">
         {["all", "earn", "convert", "redeem", "reversal", "welcome"].map((k) => (
-          <button key={k} onClick={() => setType(k)} className={`h-10 rounded-xl px-3.5 text-sm font-extrabold ${type === k ? "bg-ink text-beef" : "bg-white text-ink/60 ring-1 ring-paper-line"}`}>
+          <button key={k} onClick={() => setType(k)} className={`h-10 rounded-xl px-3.5 text-sm font-semibold ${type === k ? "bg-ink text-beef" : "bg-white text-ink/60 ring-1 ring-paper-line"}`}>
             {k === "all" ? "Tümü" : TYPE_LABEL[k]}
           </button>
         ))}
         {can(["admin"]) && (
-          <label htmlFor="lg-all" className="ml-auto flex items-center gap-2 text-sm font-bold text-ink/70">
+          <label htmlFor="lg-all" className="ml-auto flex items-center gap-2 text-sm font-semibold text-ink/70">
             <input id="lg-all" type="checkbox" checked={all} onChange={(e) => setAll(e.target.checked)} className="h-4 w-4 accent-[#0e0d0b]" /> Tüm şubeler
           </label>
         )}
@@ -917,14 +917,14 @@ export function CampaignPage() {
   const reward = state.rewards.find((x) => x.id === draft.rewardId);
 
   return (
-    <div className="grid gap-6">
+    <div className="grid gap-5">
       <PageHead
         title="Kampanya ve ödüller"
         sub="Program kuralları henüz kesinleşmedi; tüm değerler örnektir."
         action={<Badge tone="beef">Taslak kurallar</Badge>}
       />
       {!editable && <Locked>Kuralları yalnızca yönetici değiştirebilir. Oturumu "Ayşe K. · Yönetici" olarak değiştirerek deneyebilirsiniz.</Locked>}
-      <div className="grid gap-6 xl:grid-cols-[minmax(0,1fr)_minmax(0,400px)]">
+      <div className="grid gap-5 xl:grid-cols-[minmax(0,1fr)_minmax(0,400px)]">
         <Card title="Damga kartı kuralları">
           <form
             className="grid gap-5"
@@ -992,12 +992,12 @@ export function CampaignPage() {
       <Card title="Ödül kataloğu">
         <div className="grid gap-3 md:grid-cols-3">
           {state.rewards.map((rw) => (
-            <div key={rw.id} className={`overflow-hidden rounded-2xl ring-1 ${rw.active ? "ring-paper-line" : "opacity-60 ring-paper-line"}`}>
+            <div key={rw.id} className={`overflow-hidden rounded-xl ring-1 ${rw.active ? "ring-paper-line" : "opacity-60 ring-paper-line"}`}>
               {rw.image ? <img src={asset(rw.image)} alt={rw.name} className="h-36 w-full object-cover" /> : <div className="grid h-36 place-items-center bg-beef"><Ticket className="h-10 w-10" /></div>}
               <div className="grid gap-3 p-4">
                 <div className="flex items-start justify-between gap-2">
                   <div>
-                    <div className="font-extrabold">{rw.name}</div>
+                    <div className="font-semibold">{rw.name}</div>
                     <div className="text-xs text-ink/60">{rw.description}</div>
                   </div>
                   {state.rules.rewardId === rw.id && <Badge tone="dark">Kart ödülü</Badge>}
@@ -1057,16 +1057,16 @@ export function BranchesPage() {
     ["Telefon numarasının tamamını görme (demoda kapalı)", ["admin"]],
   ];
   return (
-    <div className="grid gap-6">
+    <div className="grid gap-5">
       <PageHead title="Şubeler ve personel" sub="Franchise yapısına hazır: her şube ayrı izlenir, müşteri kartı tüm şubelerde geçerli." />
       <div className="grid gap-4 md:grid-cols-3">
         {state.branches.map((b) => {
           const s = stats(b.id);
           return (
-            <div key={b.id} className={`rounded-2xl bg-white p-5 ring-1 ring-paper-line ${b.active ? "" : "opacity-70"}`}>
+            <div key={b.id} className={`rounded-xl bg-white p-5 ring-1 ring-paper-line ${b.active ? "" : "opacity-70"}`}>
               <div className="flex items-start justify-between gap-2">
                 <div>
-                  <div className="font-display text-2xl uppercase leading-none">{b.name}</div>
+                  <div className="t-h2">{b.name}</div>
                   <div className="mt-1 text-xs text-ink/60">
                     {b.city} · {b.address}
                   </div>
@@ -1100,19 +1100,19 @@ export function BranchesPage() {
         <div className="overflow-x-auto">
           <table className="w-full min-w-[620px] text-sm">
             <thead>
-              <tr className="border-b border-paper-line text-left text-[11px] font-extrabold uppercase tracking-[0.1em] text-ink/50">
-                <th className="px-5 py-3">Ad</th>
-                <th className="px-3 py-3">Rol</th>
-                <th className="px-3 py-3">Şube</th>
-                <th className="px-3 py-3">Durum</th>
-                <th className="px-5 py-3" />
+              <tr className="border-b border-paper-line text-left text-[11px] font-semibold uppercase tracking-[0.1em] text-ink/50">
+                <th className="px-4 py-2.5">Ad</th>
+                <th className="px-3 py-2.5">Rol</th>
+                <th className="px-3 py-2.5">Şube</th>
+                <th className="px-3 py-2.5">Durum</th>
+                <th className="px-4 py-2.5" />
               </tr>
             </thead>
             <tbody className="divide-y divide-paper-line">
               {state.staff.map((s) => (
                 <tr key={s.id}>
-                  <td className="px-5 py-3 font-bold">{s.name}</td>
-                  <td className="px-3 py-3">
+                  <td className="px-4 py-2.5 font-semibold">{s.name}</td>
+                  <td className="px-3 py-2.5">
                     {can(["admin"]) ? (
                       <>
                         <label htmlFor={`st-role-${s.id}`} className="sr-only">
@@ -1123,7 +1123,7 @@ export function BranchesPage() {
                           value={s.role}
                           disabled={s.id === state.panel.staffId}
                           onChange={(e) => update((st) => ({ ...st, staff: st.staff.map((x) => (x.id === s.id ? { ...x, role: e.target.value as Role } : x)) }))}
-                          className="h-9 rounded-lg bg-paper px-2 text-sm font-bold ring-1 ring-paper-line"
+                          className="h-9 rounded-lg bg-paper px-2 text-sm font-semibold ring-1 ring-paper-line"
                         >
                           {(["staff", "manager", "admin"] as Role[]).map((r) => (
                             <option key={r} value={r}>
@@ -1136,11 +1136,11 @@ export function BranchesPage() {
                       <Badge>{ROLE_LABEL[s.role]}</Badge>
                     )}
                   </td>
-                  <td className="px-3 py-3 text-ink/70">{s.branchIds.map((id) => state.branches.find((b) => b.id === id)?.name).join(", ")}</td>
-                  <td className="px-3 py-3">{s.active ? <Badge tone="ok">Aktif</Badge> : <Badge>Pasif</Badge>}</td>
-                  <td className="px-5 py-3 text-right">
+                  <td className="px-3 py-2.5 text-ink/70">{s.branchIds.map((id) => state.branches.find((b) => b.id === id)?.name).join(", ")}</td>
+                  <td className="px-3 py-2.5">{s.active ? <Badge tone="ok">Aktif</Badge> : <Badge>Pasif</Badge>}</td>
+                  <td className="px-4 py-2.5 text-right">
                     {can(["admin"]) && s.id !== state.panel.staffId && (
-                      <button onClick={() => update((st) => ({ ...st, staff: st.staff.map((x) => (x.id === s.id ? { ...x, active: !x.active } : x)) }))} className="text-xs font-extrabold text-ink/50 hover:text-ink">
+                      <button onClick={() => update((st) => ({ ...st, staff: st.staff.map((x) => (x.id === s.id ? { ...x, active: !x.active } : x)) }))} className="text-xs font-semibold text-ink/50 hover:text-ink">
                         {s.active ? "Erişimi kapat" : "Erişimi aç"}
                       </button>
                     )}
@@ -1155,10 +1155,10 @@ export function BranchesPage() {
         <div className="overflow-x-auto">
           <table className="w-full min-w-[560px] text-sm">
             <thead>
-              <tr className="border-b border-paper-line text-left text-[11px] font-extrabold uppercase tracking-[0.1em] text-ink/50">
-                <th className="px-5 py-3">Yetki</th>
+              <tr className="border-b border-paper-line text-left text-[11px] font-semibold uppercase tracking-[0.1em] text-ink/50">
+                <th className="px-4 py-2.5">Yetki</th>
                 {(["staff", "manager", "admin"] as Role[]).map((r) => (
-                  <th key={r} className="px-3 py-3 text-center">
+                  <th key={r} className="px-3 py-2.5 text-center">
                     {ROLE_LABEL[r]}
                   </th>
                 ))}
@@ -1187,8 +1187,8 @@ export function BranchesPage() {
 function MiniStat({ l, v }: { l: string; v: number }) {
   return (
     <div className="rounded-xl bg-paper p-2.5">
-      <div className="font-display text-2xl leading-none tabular">{v}</div>
-      <div className="mt-1 text-[11px] font-bold text-ink/55">{l}</div>
+      <div className="t-num">{v}</div>
+      <div className="mt-1 text-[11px] font-semibold text-ink/55">{l}</div>
     </div>
   );
 }
