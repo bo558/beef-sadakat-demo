@@ -459,7 +459,7 @@ export function RewardsScreen({ me, go }: ScreenProps) {
 export function Sheet({ onClose, children }: { onClose: () => void; children: React.ReactNode }) {
   return (
     <div className="absolute inset-0 z-50 flex items-end bg-black/60 backdrop-blur-[2px]" onClick={onClose}>
-      <div className="animate-rise relative max-h-[92%] w-full overflow-y-auto rounded-t-3xl bg-white p-5 pb-[max(20px,env(safe-area-inset-bottom))] text-ink" onClick={(e) => e.stopPropagation()} role="dialog" aria-modal>
+      <div className="animate-rise relative no-scrollbar max-h-[92%] w-full overflow-y-auto rounded-t-3xl bg-white p-5 pb-[max(20px,env(safe-area-inset-bottom))] text-ink" onClick={(e) => e.stopPropagation()} role="dialog" aria-modal>
         <div className="mx-auto mb-3 h-1 w-10 rounded-full bg-ink/15" />
         <button onClick={onClose} className="absolute right-3 top-3 grid h-9 w-9 place-items-center rounded-full bg-ink/5" aria-label="Kapat">
           <X className="h-4 w-4" />

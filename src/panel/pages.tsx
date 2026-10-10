@@ -162,7 +162,7 @@ export function RegisterPage({ preselect }: { preselect?: string }) {
 
           {mode === "qr" && (
             <div className="mt-4">
-              <div className="relative aspect-[16/9] overflow-hidden rounded-xl bg-ink sm:aspect-[4/3]">
+              <div className="relative mx-auto aspect-[16/9] w-full max-w-[440px] overflow-hidden rounded-xl bg-ink">
                 <div className="absolute inset-0 opacity-25" style={{ background: "radial-gradient(circle at 50% 40%, #3a352c, #0e0d0b 70%)" }} />
                 <div className="absolute inset-[14%] rounded-xl">
                   {["left-0 top-0 border-l-4 border-t-4 rounded-tl-2xl", "right-0 top-0 border-r-4 border-t-4 rounded-tr-2xl", "left-0 bottom-0 border-l-4 border-b-4 rounded-bl-2xl", "right-0 bottom-0 border-r-4 border-b-4 rounded-br-2xl"].map((c) => (

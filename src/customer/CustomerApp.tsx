@@ -62,7 +62,7 @@ function AppInner({ sub, go, rootGo }: { sub: string; go: (p: string) => void; r
 
   if (!me)
     return (
-      <div className="h-full overflow-y-auto">
+      <div className="no-scrollbar h-full overflow-y-auto">
         <Onboarding />
       </div>
     );
@@ -116,7 +116,7 @@ function AppInner({ sub, go, rootGo }: { sub: string; go: (p: string) => void; r
           </button>
         </div>
       </header>
-      <main ref={scroller} className="flex-1 overflow-y-auto pb-24" key={sub}>
+      <main ref={scroller} className="no-scrollbar flex-1 overflow-y-auto pb-24" key={sub}>
         <div className="animate-rise">{screen}</div>
       </main>
       <nav className="absolute inset-x-0 bottom-0 border-t border-ink-line bg-ink/95 px-2 pb-[max(6px,env(safe-area-inset-bottom))] pt-1 backdrop-blur" aria-label="Ana menü">
