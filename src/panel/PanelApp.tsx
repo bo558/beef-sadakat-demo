@@ -164,7 +164,7 @@ export function PanelApp({ sub, param, go }: { sub: string; param?: string; go: 
       </nav>
 
       {drawer && (
-        <div className="fixed inset-0 z-50 bg-black/50 lg:hidden" onClick={() => setDrawer(false)}>
+        <div className="fixed inset-x-0 bottom-0 top-[var(--demo-bar)] z-50 bg-black/50 lg:hidden" onClick={() => setDrawer(false)}>
           <div className="animate-rise flex h-full w-[82%] max-w-[300px] flex-col gap-4 overflow-y-auto bg-ink p-4 pt-[max(16px,env(safe-area-inset-top))]" onClick={(e) => e.stopPropagation()}>
             <div className="flex items-center justify-between">
               <BrandLogo size="sm" />
