@@ -1,6 +1,6 @@
 import { ArrowLeft, ArrowRight, Check, Gift, Phone, ShieldCheck } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
-import { asset, LogoPlaceholder } from "../components/brand";
+import { asset, BrandLogo } from "../components/brand";
 import { registerCustomer, uid } from "../data/engine";
 import { useStore } from "../store/store";
 
@@ -31,7 +31,7 @@ export function Onboarding() {
           <img src={asset("brand/burger-ambalaj.jpg")} alt="BEEF ambalaj kâğıdı üzerinde burger ve patates" className="h-full w-full object-cover" />
           <div className="absolute inset-0 bg-gradient-to-b from-ink/50 via-transparent to-ink" />
           <div className="absolute left-4 top-[max(14px,env(safe-area-inset-top))]">
-            <LogoPlaceholder size="sm" />
+            <BrandLogo size="md" />
           </div>
         </div>
         <div className="relative -mt-12 flex flex-1 flex-col px-5 pb-[max(20px,env(safe-area-inset-bottom))]">

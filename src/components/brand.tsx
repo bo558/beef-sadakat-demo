@@ -7,27 +7,22 @@ import { useStore } from "../store/store";
 export const asset = (p: string) => `${import.meta.env.BASE_URL}${p.replace(/^\/+/, "")}`;
 
 /**
- * LOGO YER TUTUCU — orijinal boynuzlu BEEF BURGER logosunun vektör dosyası
- * gelene kadar kullanılır. Logo yeniden çizilmemiştir.
+ * BEEF'in gerçek logosu (public/brand/logo.jpg, 1024×1024, orijinal dosya).
+ * Kare oran korunur; esnetme, kırpma veya yeniden çizim yok. Köşe yuvarlaması
+ * yalnızca logonun düz turuncu zeminine denk gelir.
  */
-export function LogoPlaceholder({ tone = "dark", size = "md" }: { tone?: "dark" | "light"; size?: "sm" | "md" }) {
-  const dims = { sm: "h-8 px-2.5 text-[13px]", md: "h-10 px-3.5 text-base" }[size];
-  const col = tone === "dark" ? "border-beef/60 text-beef" : "border-ink/40 text-ink";
+export function BrandLogo({ size = "sm", className = "" }: { size?: "sm" | "md" | "lg"; className?: string }) {
+  const px = { sm: 40, md: 52, lg: 76 }[size];
   return (
-    <div
-      className={`relative inline-flex select-none items-center justify-center rounded-lg border border-dashed ${col} ${dims}`}
-      title="Logo yer tutucu: orijinal logo dosyası bekleniyor"
-      aria-label="BEEF BURGER logosu (yer tutucu)"
-    >
-      <span className="font-display font-semibold uppercase leading-none tracking-[0.06em]">Beef Burger</span>
-      <span
-        className={`absolute -bottom-1.5 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full px-1 text-[7px] font-semibold uppercase tracking-[0.12em] ${
-          tone === "dark" ? "bg-ink text-beef/70" : "bg-paper text-ink/50"
-        }`}
-      >
-        logo yer tutucu
-      </span>
-    </div>
+    <img
+      src={asset("brand/logo.jpg")}
+      width={px}
+      height={px}
+      alt="the beef · burger & more logosu"
+      className={`block aspect-square shrink-0 select-none rounded-md object-contain ${className}`}
+      style={{ width: px, height: px }}
+      draggable={false}
+    />
   );
 }
 

@@ -1,6 +1,6 @@
 import { Gift, History, House, LayoutDashboard, QrCode, RotateCcw, Sparkles, Ticket, Wand2, X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
-import { asset, LogoPlaceholder, Toasts } from "../components/brand";
+import { asset, BrandLogo, Toasts } from "../components/brand";
 import { balanceOf, earnStamp, initials } from "../data/engine";
 import { useStore } from "../store/store";
 import { Onboarding } from "./Onboarding";
@@ -103,7 +103,7 @@ function AppInner({ sub, go, rootGo }: { sub: string; go: (p: string) => void; r
     <div className="relative flex h-full flex-col">
       <header className="flex shrink-0 items-center justify-between px-4 pb-2 pt-[max(10px,env(safe-area-inset-top))]">
         <button onClick={() => go("")} aria-label="Ana sayfa">
-          <LogoPlaceholder size="sm" />
+          <BrandLogo size="sm" />
         </button>
         <div className="flex items-center gap-2">
           <MobileDemo go={rootGo} />

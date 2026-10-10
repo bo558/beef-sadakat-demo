@@ -32,4 +32,4 @@ React · TypeScript · Vite · Tailwind CSS · `qrcode` · `lucide-react`. Yazı
 
 ## Haklar
 
-Fotoğraflar (`public/brand/`) BEEF Burger'a aittir ve yalnızca bu demoda kullanılmaktadır; başka amaçla kullanılamaz. Logo alanı yer tutucudur. Bu depodaki kod için açık kaynak lisansı verilmemiştir; tüm hakları saklıdır.
+Logo ve fotoğraflar (`public/brand/`) BEEF Burger'a aittir ve yalnızca bu demoda kullanılmaktadır; başka amaçla kullanılamaz. Bu depodaki kod için açık kaynak lisansı verilmemiştir; tüm hakları saklıdır.

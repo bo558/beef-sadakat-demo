@@ -1,5 +1,5 @@
 import { ArrowRight, LayoutDashboard, Smartphone } from "lucide-react";
-import { asset, LogoPlaceholder } from "./components/brand";
+import { asset, BrandLogo } from "./components/brand";
 import { CustomerApp } from "./customer/CustomerApp";
 import { PanelApp } from "./panel/PanelApp";
 import { useRoute } from "./store/store";
@@ -36,7 +36,7 @@ function Landing({ go }: { go: (p: string) => void }) {
       <div className="absolute inset-0 bg-gradient-to-b from-ink/60 via-ink/85 to-ink" />
       <div className="relative mx-auto flex min-h-[calc(100dvh-80px)] max-w-5xl flex-col">
         <div className="self-start">
-          <LogoPlaceholder />
+          <BrandLogo size="lg" />
         </div>
         <div className="mt-auto pt-12">
           <div className="t-label text-smoke">Sadakat uygulaması · etkileşimli prototip</div>
@@ -67,7 +67,7 @@ function Landing({ go }: { go: (p: string) => void }) {
               <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
             </button>
           </div>
-          <p className="mt-5 text-[11px] text-smoke">Logo yer tutucudur; orijinal boynuzlu BEEF BURGER logosunun vektör dosyası bekleniyor. Fotoğraflar BEEF'in Instagram hesabından alınmıştır.</p>
+          <p className="mt-5 text-[11px] text-smoke">Fotoğraflar BEEF'in Instagram hesabından alınmıştır.</p>
         </div>
       </div>
     </div>

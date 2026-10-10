@@ -1,6 +1,6 @@
 import { Building2, LayoutDashboard, ListChecks, Menu, ScanLine, Settings, Smartphone, Users, X } from "lucide-react";
 import { useState } from "react";
-import { LogoPlaceholder, Toasts } from "../components/brand";
+import { BrandLogo, Toasts } from "../components/brand";
 import { ROLE_LABEL } from "../data/defaults";
 import { useStore } from "../store/store";
 import { BranchesPage, CampaignPage, CustomersPage, DashboardPage, LedgerPage, RegisterPage } from "./pages";
@@ -94,7 +94,7 @@ export function PanelApp({ sub, param, go }: { sub: string; param?: string; go: 
     <div className="min-h-[calc(100%-var(--demo-bar))] bg-paper text-ink lg:grid lg:grid-cols-[232px_1fr]">
       <aside className="sticky top-[var(--demo-bar)] hidden h-[calc(100dvh-var(--demo-bar))] flex-col gap-5 overflow-y-auto bg-ink p-4 lg:flex">
         <div className="flex items-center justify-between">
-          <LogoPlaceholder size="sm" />
+          <BrandLogo size="sm" />
           <span className="t-label text-[10px] text-smoke">Panel</span>
         </div>
         {NavList()}
@@ -167,7 +167,7 @@ export function PanelApp({ sub, param, go }: { sub: string; param?: string; go: 
         <div className="fixed inset-0 z-50 bg-black/50 lg:hidden" onClick={() => setDrawer(false)}>
           <div className="animate-rise flex h-full w-[82%] max-w-[300px] flex-col gap-4 overflow-y-auto bg-ink p-4 pt-[max(16px,env(safe-area-inset-top))]" onClick={(e) => e.stopPropagation()}>
             <div className="flex items-center justify-between">
-              <LogoPlaceholder size="sm" />
+              <BrandLogo size="sm" />
               <button onClick={() => setDrawer(false)} className="grid h-10 w-10 place-items-center rounded-full bg-ink-3 text-white" aria-label="Menüyü kapat">
                 <X className="h-5 w-5" />
               </button>
