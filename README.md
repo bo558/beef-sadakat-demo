@@ -1,6 +1,6 @@
-# BEEF Kart — sadakat uygulaması demosu
+# THE BEEF Kart — sadakat uygulaması demosu
 
-> **Bu bir tasarım prototipidir, gerçek BEEF uygulaması değildir.**
+> **Bu bir tasarım prototipidir, gerçek THE BEEF uygulaması değildir.**
 > Sunucu, veritabanı, SMS, ödeme veya kasa bağlantısı yoktur. Girilen bilgiler hiçbir yere gönderilmez; yalnızca kullandığınız tarayıcının yerel deposunda (localStorage) tutulur. Tüm müşteri, personel ve işlem kayıtları uydurma örnek verilerdir.
 
 ## Neler var?
@@ -32,4 +32,4 @@ React · TypeScript · Vite · Tailwind CSS · `qrcode` · `lucide-react`. Yazı
 
 ## Haklar
 
-Logo ve fotoğraflar (`public/brand/`) BEEF Burger'a aittir ve yalnızca bu demoda kullanılmaktadır; başka amaçla kullanılamaz. Bu depodaki kod için açık kaynak lisansı verilmemiştir; tüm hakları saklıdır.
+Logo ve fotoğraflar (`public/brand/`) THE BEEF · burger & more markasına (@thebeef.burger) aittir ve yalnızca bu demoda kullanılmaktadır; başka amaçla kullanılamaz. Bu depodaki kod için açık kaynak lisansı verilmemiştir; tüm hakları saklıdır.

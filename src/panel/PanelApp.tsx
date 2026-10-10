@@ -49,7 +49,7 @@ export function PanelApp({ sub, param, go }: { sub: string; param?: string; go: 
               onClick={() => nav(n.key)}
               aria-current={active ? "page" : undefined}
               className={`flex h-10 w-full items-center gap-2.5 rounded-lg px-3 text-left text-[13px] font-medium transition-colors ${
-                active ? "bg-beef text-ink" : "text-white/75 hover:bg-ink-3 hover:text-white"
+                active ? "bg-beef text-ink" : "text-cream/75 hover:bg-ink-3 hover:text-cream"
               }`}
             >
               <Icon className="h-4 w-4" />
@@ -76,7 +76,7 @@ export function PanelApp({ sub, param, go }: { sub: string; param?: string; go: 
             return { ...s, panel: { staffId: st.id, branchId: st.branchIds.includes(s.panel.branchId) ? s.panel.branchId : st.branchIds[0]! } };
           })
         }
-        className="mt-1 h-9 w-full rounded-lg bg-ink-2 px-2 text-[13px] font-medium text-white outline-none ring-1 ring-ink-line"
+        className="mt-1 h-9 w-full rounded-lg bg-ink-2 px-2 text-[13px] font-medium text-cream outline-none ring-1 ring-ink-line"
       >
         {state.staff
           .filter((s) => s.active)
@@ -100,7 +100,7 @@ export function PanelApp({ sub, param, go }: { sub: string; param?: string; go: 
         {NavList()}
         <div className="mt-auto grid gap-3">
           {Who()}
-          <button onClick={() => go("app")} className="flex h-9 items-center gap-2 rounded-lg px-3 text-[13px] font-medium text-smoke hover:text-white">
+          <button onClick={() => go("app")} className="flex h-9 items-center gap-2 rounded-lg px-3 text-[13px] font-medium text-smoke hover:text-cream">
             <Smartphone className="h-4 w-4" /> Müşteri uygulaması
           </button>
         </div>
@@ -113,7 +113,7 @@ export function PanelApp({ sub, param, go }: { sub: string; param?: string; go: 
               <Menu className="h-5 w-5" />
             </button>
             <div className="min-w-0 flex-1">
-              <div className="t-label hidden text-[10px] text-ink/45 sm:block">BEEF Sadakat · İşletme paneli</div>
+              <div className="t-label hidden text-[10px] text-ink/45 sm:block">THE BEEF · İşletme paneli</div>
               <div className="truncate text-[13px] font-semibold">
                 {me.name} <span className="font-normal text-ink/50">· {ROLE_LABEL[me.role]}</span>
               </div>
@@ -168,7 +168,7 @@ export function PanelApp({ sub, param, go }: { sub: string; param?: string; go: 
           <div className="animate-rise flex h-full w-[82%] max-w-[300px] flex-col gap-4 overflow-y-auto bg-ink p-4 pt-[max(16px,env(safe-area-inset-top))]" onClick={(e) => e.stopPropagation()}>
             <div className="flex items-center justify-between">
               <BrandLogo size="sm" />
-              <button onClick={() => setDrawer(false)} className="grid h-10 w-10 place-items-center rounded-full bg-ink-3 text-white" aria-label="Menüyü kapat">
+              <button onClick={() => setDrawer(false)} className="grid h-10 w-10 place-items-center rounded-full bg-ink-3 text-cream" aria-label="Menüyü kapat">
                 <X className="h-5 w-5" />
               </button>
             </div>

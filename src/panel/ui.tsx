@@ -1,7 +1,7 @@
 import { Lock } from "lucide-react";
 import type { ReactNode } from "react";
 
-/* Panel bileşenleri: müşteri uygulamasıyla aynı tipografi ölçeği (Oswald başlık, Poppins metin). */
+/* Panel bileşenleri: müşteri uygulamasıyla aynı tipografi ölçeği (Anton başlık, Poppins metin). */
 
 export function Card({ title, action, children, className = "", pad = true }: { title?: ReactNode; action?: ReactNode; children: ReactNode; className?: string; pad?: boolean }) {
   return (
@@ -36,9 +36,9 @@ export function Btn({
 }) {
   const tones = {
     primary: "bg-beef text-ink hover:bg-beef-deep",
-    dark: "bg-ink text-white hover:bg-ink-3",
+    dark: "bg-ink text-cream hover:bg-ink-3",
     ghost: "bg-white text-ink ring-1 ring-paper-line hover:bg-paper",
-    danger: "bg-bad-soft text-bad hover:bg-bad hover:text-white",
+    danger: "bg-bad-soft text-bad hover:bg-bad hover:text-cream",
   }[tone];
   const sizes = { sm: "h-8 px-3 text-xs", md: "h-10 px-3.5 text-[13px]", lg: "h-11 px-5 text-sm" }[size];
   return (
@@ -102,7 +102,7 @@ export function PageHead({ title, sub, action }: { title: string; sub?: string; 
 
 export function Kpi({ label, value, sub, accent }: { label: string; value: ReactNode; sub?: ReactNode; accent?: boolean }) {
   return (
-    <div className={`min-w-0 rounded-xl p-3.5 ring-1 ${accent ? "bg-ink text-white ring-ink" : "bg-white ring-paper-line"}`}>
+    <div className={`min-w-0 rounded-xl p-3.5 ring-1 ${accent ? "bg-ink text-cream ring-ink" : "bg-white ring-paper-line"}`}>
       <div className={`t-label ${accent ? "text-beef" : "text-ink/50"}`}>{label}</div>
       <div className="mt-1.5 font-display text-[24px] font-semibold leading-none tabular">{value}</div>
       {sub && <div className={`mt-1 text-[11px] ${accent ? "text-smoke" : "text-ink/50"}`}>{sub}</div>}

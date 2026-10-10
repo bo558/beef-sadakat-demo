@@ -262,7 +262,7 @@ export function RegisterPage({ preselect }: { preselect?: string }) {
                   <form onSubmit={submit} className="grid gap-4">
                     <div className="grid grid-cols-2 gap-3">
                       <Field label="Fiş / adisyon no" htmlFor="rg-receipt">
-                        <input id="rg-receipt" value={receipt} onChange={(e) => setReceipt(e.target.value.toUpperCase())} placeholder="Örn. B-48213" className={inputCls} autoComplete="off" />
+                        <input id="rg-receipt" value={receipt} onChange={(e) => setReceipt(e.target.value.toUpperCase())} placeholder="Örn. C-48213" className={inputCls} autoComplete="off" />
                       </Field>
                       <Field label="Tutar (₺)" htmlFor="rg-amount">
                         <input id="rg-amount" inputMode="decimal" value={amount} onChange={(e) => setAmount(e.target.value.replace(/[^\d,]/g, ""))} placeholder={String(r.minSpend + 150)} className={`${inputCls} tabular`} />
@@ -274,7 +274,7 @@ export function RegisterPage({ preselect }: { preselect?: string }) {
                       <CooldownRule state={state} customerId={customer.id} minutes={r.cooldownMinutes} />
                     </div>
                     <label htmlFor="rg-skip" className="flex items-center gap-2 text-xs font-semibold text-ink/60">
-                      <input id="rg-skip" type="checkbox" checked={skipCooldown} onChange={(e) => setSkipCooldown(e.target.checked)} className="h-4 w-4 accent-[#0e0d0b]" />
+                      <input id="rg-skip" type="checkbox" checked={skipCooldown} onChange={(e) => setSkipCooldown(e.target.checked)} className="h-4 w-4 accent-[#e25601]" />
                       Demo: bekleme süresini yoksay
                     </label>
                     <Btn type="submit" size="lg" disabled={!receipt.trim() || !amount}>
@@ -283,7 +283,7 @@ export function RegisterPage({ preselect }: { preselect?: string }) {
                     <button
                       type="button"
                       onClick={() => {
-                        setReceipt(`${branch.id === "br-bursa" ? "B" : "G"}-${Math.floor(Math.random() * 9000 + 50000)}`);
+                        setReceipt(`${branch.id === "br-cerkezkoy" ? "C" : "O"}-${Math.floor(Math.random() * 9000 + 50000)}`);
                         setAmount(String(r.minSpend + 160));
                       }}
                       className="text-left text-xs font-semibold text-ink/50 underline underline-offset-4"
@@ -348,7 +348,7 @@ export function RegisterPage({ preselect }: { preselect?: string }) {
             return (
               <div className="grid gap-4">
                 <div className="flex items-center gap-4">
-                  {rw.image ? <img src={asset(rw.image)} alt="" className="h-20 w-20 rounded-xl object-cover" /> : <div className="grid h-20 w-20 place-items-center rounded-xl bg-beef"><Gift className="h-8 w-8" /></div>}
+                  {rw.image ? <img src={asset(rw.image)} alt="" className="h-20 w-20 rounded-xl object-cover object-bottom" /> : <div className="grid h-20 w-20 place-items-center rounded-xl bg-beef"><Gift className="h-8 w-8" /></div>}
                   <div>
                     <div className="t-h1">{rw.name}</div>
                     <div className="mt-1 text-sm text-ink/60">{rw.description}</div>
@@ -395,7 +395,7 @@ function CustomerStrip({ c, onClear }: { c: Customer; onClear: () => void }) {
   const visits = state.orders.filter((o) => o.customerId === c.id);
   const lastV = visits.sort((a, b) => b.createdAt.localeCompare(a.createdAt))[0];
   return (
-    <div className="flex flex-wrap items-center gap-3 rounded-xl bg-ink p-3.5 text-white">
+    <div className="flex flex-wrap items-center gap-3 rounded-xl bg-ink p-3.5 text-cream">
       <span className="grid h-11 w-11 place-items-center rounded-full bg-beef font-display text-[15px] font-semibold text-ink">{initials(c.name)}</span>
       <div className="min-w-0 flex-1">
         <div className="t-h1 truncate">{c.name}</div>
@@ -417,7 +417,7 @@ function CustomerStrip({ c, onClear }: { c: Customer; onClear: () => void }) {
 }
 
 function FeedbackBanner({ fb, onClose }: { fb: NonNullable<Feedback>; onClose: () => void }) {
-  const tone = fb.tone === "ok" ? "bg-ok text-white" : fb.tone === "bad" ? "bg-bad text-white" : "bg-beef text-ink";
+  const tone = fb.tone === "ok" ? "bg-ok text-cream" : fb.tone === "bad" ? "bg-bad text-cream" : "bg-beef text-ink";
   const Icon = fb.tone === "bad" ? CircleAlert : fb.tone === "reward" ? Gift : Check;
   return (
     <div role="status" className={`animate-pop flex items-start gap-2.5 rounded-xl p-3 ${tone}`}>
@@ -518,7 +518,7 @@ export function DashboardPage({ go }: { go: (p: string) => void }) {
             {[0, 0.5, 1].map((t) => (
               <g key={t}>
                 <line x1="34" x2="700" y1={190 - t * 160} y2={190 - t * 160} stroke="#e6e2d9" strokeWidth="1" />
-                <text x="26" y={194 - t * 160} textAnchor="end" fontSize="11" fill="#0e0d0b" opacity="0.5">
+                <text x="26" y={194 - t * 160} textAnchor="end" fontSize="11" fill="#161514" opacity="0.5">
                   {Math.round(max * t)}
                 </text>
               </g>
@@ -529,13 +529,13 @@ export function DashboardPage({ go }: { go: (p: string) => void }) {
               const isToday = i === 13;
               return (
                 <g key={i}>
-                  <rect x={x} y={190 - h} width="32" height={Math.max(h, 2)} rx="6" fill={isToday ? "#fbcc0a" : "#0e0d0b"} opacity={isToday ? 1 : 0.85} />
+                  <rect x={x} y={190 - h} width="32" height={Math.max(h, 2)} rx="6" fill={isToday ? "#e25601" : "#161514"} opacity={isToday ? 1 : 0.85} />
                   {d.n > 0 && (
-                    <text x={x + 16} y={184 - h} textAnchor="middle" fontSize="11" fontWeight="700" fill="#0e0d0b">
+                    <text x={x + 16} y={184 - h} textAnchor="middle" fontSize="11" fontWeight="700" fill="#161514">
                       {d.n}
                     </text>
                   )}
-                  <text x={x + 16} y="210" textAnchor="middle" fontSize="11" fill="#0e0d0b" opacity="0.55">
+                  <text x={x + 16} y="210" textAnchor="middle" fontSize="11" fill="#161514" opacity="0.55">
                     {d.d.getDate()}
                   </text>
                 </g>
@@ -868,7 +868,7 @@ export function LedgerPage() {
         ))}
         {can(["admin"]) && (
           <label htmlFor="lg-all" className="ml-auto flex items-center gap-2 text-sm font-semibold text-ink/70">
-            <input id="lg-all" type="checkbox" checked={all} onChange={(e) => setAll(e.target.checked)} className="h-4 w-4 accent-[#0e0d0b]" /> Tüm şubeler
+            <input id="lg-all" type="checkbox" checked={all} onChange={(e) => setAll(e.target.checked)} className="h-4 w-4 accent-[#e25601]" /> Tüm şubeler
           </label>
         )}
       </div>
@@ -993,7 +993,7 @@ export function CampaignPage() {
         <div className="grid gap-3 md:grid-cols-3">
           {state.rewards.map((rw) => (
             <div key={rw.id} className={`overflow-hidden rounded-xl ring-1 ${rw.active ? "ring-paper-line" : "opacity-60 ring-paper-line"}`}>
-              {rw.image ? <img src={asset(rw.image)} alt={rw.name} className="h-36 w-full object-cover" /> : <div className="grid h-36 place-items-center bg-beef"><Ticket className="h-10 w-10" /></div>}
+              {rw.image ? <img src={asset(rw.image)} alt={rw.name} className="h-36 w-full object-cover object-bottom" /> : <div className="grid h-36 place-items-center bg-beef"><Ticket className="h-10 w-10" /></div>}
               <div className="grid gap-3 p-4">
                 <div className="flex items-start justify-between gap-2">
                   <div>
@@ -1026,7 +1026,7 @@ export function CampaignPage() {
             </div>
           ))}
         </div>
-        <p className="mt-4 text-xs text-ink/50">Ürün görselleri BEEF'in Instagram hesabındaki gerçek fotoğraflardır. Diğer ürünlerin fotoğrafları markadan beklenmektedir.</p>
+        <p className="mt-4 text-xs text-ink/50">Ürün görselleri @thebeef.burger hesabındaki gönderilerden alınmıştır. Diğer ürünlerin fotoğrafları markadan beklenmektedir.</p>
       </Card>
     </div>
   );

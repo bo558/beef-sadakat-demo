@@ -16,7 +16,7 @@ const TABS = [
 
 export function CustomerApp({ sub, go }: { sub: string; go: (p: string) => void }) {
   return (
-    <div className="min-h-[calc(100%-var(--demo-bar))] bg-[#090807] lg:grid lg:grid-cols-[1fr_auto_1fr] lg:items-center lg:gap-10 lg:px-8 lg:py-8">
+    <div className="min-h-[calc(100%-var(--demo-bar))] bg-[#0f0e0d] lg:grid lg:grid-cols-[1fr_auto_1fr] lg:items-center lg:gap-10 lg:px-8 lg:py-8">
       <aside className="hidden lg:block lg:justify-self-end">
         <SideInfo go={go} />
       </aside>
@@ -32,7 +32,7 @@ export function CustomerApp({ sub, go }: { sub: string; go: (p: string) => void 
 
 function PhoneFrame({ children }: { children: React.ReactNode }) {
   return (
-    <div className="relative h-[calc(100dvh-var(--demo-bar))] w-full overflow-hidden bg-ink lg:h-[min(860px,calc(100dvh-64px-var(--demo-bar)))] lg:w-[400px] lg:rounded-[48px] lg:ring-[10px] lg:ring-ink-3 lg:shadow-[0_40px_120px_-30px_rgba(251,204,10,0.25)]">
+    <div className="relative h-[calc(100dvh-var(--demo-bar))] w-full overflow-hidden bg-ink lg:h-[min(860px,calc(100dvh-64px-var(--demo-bar)))] lg:w-[400px] lg:rounded-[48px] lg:ring-[10px] lg:ring-ink-3 lg:shadow-[0_40px_120px_-30px_rgba(226,86,1,0.35)]">
       {children}
     </div>
   );
@@ -109,7 +109,7 @@ function AppInner({ sub, go, rootGo }: { sub: string; go: (p: string) => void; r
           <MobileDemo go={rootGo} />
           <button
           onClick={() => go("profil")}
-          className={`grid h-9 w-9 place-items-center rounded-full font-display text-[13px] font-semibold ${sub === "profil" ? "bg-beef text-ink" : "bg-ink-2 text-white ring-1 ring-ink-line"}`}
+          className={`grid h-9 w-9 place-items-center rounded-full font-display text-[13px] font-semibold ${sub === "profil" ? "bg-beef text-ink" : "bg-ink-2 text-cream ring-1 ring-ink-line"}`}
           aria-label="Profil"
         >
           {initials(me.name)}
@@ -172,19 +172,18 @@ function Celebration({ rewardName, onClose }: { rewardName: string; onClose: (to
   return (
     <div className="absolute inset-0 z-50 flex flex-col overflow-hidden bg-beef text-ink" role="dialog" aria-modal aria-label="Ödül kazandın">
       <div className="burst absolute left-1/2 top-[38%] h-[170%] w-[170%] -translate-x-1/2 -translate-y-1/2" aria-hidden />
-      <div className="wall-stripes relative h-3 shrink-0" aria-hidden />
       <button onClick={() => onClose(false)} className="absolute right-4 top-6 z-10 grid h-10 w-10 place-items-center rounded-full bg-ink/10" aria-label="Kapat">
         <X className="h-5 w-5" />
       </button>
       <div className="relative flex flex-1 flex-col items-center justify-center px-6 text-center">
         <div className="animate-pop relative">
-          <img src={asset("brand/burger-ambalaj.jpg")} alt="" className="h-36 w-36 rounded-full object-cover ring-[6px] ring-ink" />
+          <img src={asset("brand/burger-yakin.jpg")} alt="" className="h-36 w-36 rounded-full object-cover ring-[6px] ring-ink" />
           <span className="absolute -right-1 -top-1 grid h-11 w-11 rotate-12 place-items-center rounded-full bg-ink text-beef">
             <Sparkles className="h-5 w-5" />
           </span>
         </div>
         <div className="t-label mt-6">Kart doldu</div>
-        <h2 className="t-display mt-1.5 text-[34px]">
+        <h2 className="t-display mt-1.5 text-[34px] text-cream">
           Menün
           <br />
           bizden!
@@ -199,7 +198,6 @@ function Celebration({ rewardName, onClose }: { rewardName: string; onClose: (to
           Sonra
         </button>
       </div>
-      <div className="wall-stripes relative h-3 shrink-0" aria-hidden />
     </div>
   );
 }
@@ -207,9 +205,9 @@ function Celebration({ rewardName, onClose }: { rewardName: string; onClose: (to
 /* -------- Masaüstünde telefonun yanındaki açıklama ve demo kontrolleri -------- */
 function SideInfo({ go }: { go: (p: string) => void }) {
   return (
-    <div className="max-w-[300px] text-white">
+    <div className="max-w-[300px] text-cream">
       <div className="t-label text-beef">Müşteri uygulaması · prototip</div>
-      <h1 className="t-display mt-2 text-[32px]">Beef Kart</h1>
+      <h1 className="t-display mt-2 text-[32px]">The Beef <span className="text-beef">Kart</span></h1>
       <p className="mt-3 text-[13px] leading-relaxed text-smoke">
         Mobil öncelikli PWA prototipi. Tüm veriler örnektir ve yalnızca bu tarayıcıda saklanır. SMS, veritabanı ve kasa bağlantısı yoktur.
       </p>
@@ -217,7 +215,7 @@ function SideInfo({ go }: { go: (p: string) => void }) {
         <button onClick={() => go("panel/kasa")} className="flex h-10 items-center gap-2 rounded-lg bg-white px-3.5 text-[13px] font-semibold text-ink">
           <LayoutDashboard className="h-4 w-4" /> İşletme paneline geç
         </button>
-        <a href="#/panel/kasa" target="_blank" rel="noreferrer" className="flex h-10 items-center gap-2 rounded-lg px-3.5 text-[13px] font-medium text-smoke ring-1 ring-ink-line hover:text-white">
+        <a href="#/panel/kasa" target="_blank" rel="noreferrer" className="flex h-10 items-center gap-2 rounded-lg px-3.5 text-[13px] font-medium text-smoke ring-1 ring-ink-line hover:text-cream">
           Paneli yeni sekmede aç (canlı senkron)
         </a>
       </div>
@@ -254,7 +252,7 @@ function useDemoActions() {
 function DemoDock({ go }: { go: (p: string) => void }) {
   const { me, add, fill, reset, loginDemo } = useDemoActions();
   return (
-    <div className="w-[240px] rounded-2xl bg-ink-2 p-4 text-white ring-1 ring-ink-line">
+    <div className="w-[240px] rounded-2xl bg-ink-2 p-4 text-cream ring-1 ring-ink-line">
       <div className="t-label flex items-center gap-2 text-beef">
         <Wand2 className="h-4 w-4" /> Demo kontrolleri
       </div>
@@ -271,7 +269,7 @@ function DemoDock({ go }: { go: (p: string) => void }) {
           <DemoBtn onClick={loginDemo}>Örnek üye ile gir</DemoBtn>
         </div>
       )}
-      <button onClick={reset} className="mt-4 flex items-center gap-2 text-xs font-bold text-smoke hover:text-white">
+      <button onClick={reset} className="mt-4 flex items-center gap-2 text-xs font-bold text-smoke hover:text-cream">
         <RotateCcw className="h-3.5 w-3.5" /> Demoyu sıfırla
       </button>
     </div>

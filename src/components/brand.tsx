@@ -7,11 +7,11 @@ import { useStore } from "../store/store";
 export const asset = (p: string) => `${import.meta.env.BASE_URL}${p.replace(/^\/+/, "")}`;
 
 /**
- * BEEF'in gerçek logosu (public/brand/logo.jpg, 1024×1024, orijinal dosya).
+ * THE BEEF · burger & more logosu (public/brand/logo.jpg, 1024×1024, orijinal dosya).
  * Kare oran korunur; esnetme, kırpma veya yeniden çizim yok. Köşe yuvarlaması
  * yalnızca logonun düz turuncu zeminine denk gelir.
  */
-export function BrandLogo({ size = "sm", className = "" }: { size?: "sm" | "md" | "lg"; className?: string }) {
+export function BrandLogo({ size = "sm", className = "", onBrand = false }: { size?: "sm" | "md" | "lg"; className?: string; onBrand?: boolean }) {
   const px = { sm: 40, md: 52, lg: 76 }[size];
   return (
     <img
@@ -19,21 +19,21 @@ export function BrandLogo({ size = "sm", className = "" }: { size?: "sm" | "md" 
       width={px}
       height={px}
       alt="the beef · burger & more logosu"
-      className={`block aspect-square shrink-0 select-none rounded-md object-contain ${className}`}
+      className={`block aspect-square shrink-0 select-none rounded-md object-contain ${onBrand ? "ring-2 ring-cream/70" : ""} ${className}`}
       style={{ width: px, height: px }}
       draggable={false}
     />
   );
 }
 
-/** Instagram'daki sarı fırça darbesi etiket. */
-export function BrushLabel({ children, className = "" }: { children: ReactNode; className?: string }) {
-  return <span className={`brush ${className}`}>{children}</span>;
+/** "— Burger & More —" gönderisindeki çizgili, geniş aralıklı bölüm etiketi. */
+export function SectionLabel({ children, className = "" }: { children: ReactNode; className?: string }) {
+  return <span className={`eyebrow ${className}`}>{children}</span>;
 }
 
 /**
- * Dijital sadakat kartı. Instagram kampanya görsellerindeki gibi siyah zemin,
- * sarı yalnızca dolu damgalarda, sayaçta ve hediye şeridinde.
+ * Dijital sadakat kartı: logo karosu gibi turuncu zemin, krem damgalar,
+ * kömür siyahı hediye şeridi (THE BEEF kimliği).
  */
 export function StampCard({
   stamps,
@@ -53,17 +53,18 @@ export function StampCard({
   const cols = required <= 4 ? required : required <= 10 ? Math.ceil(required / 2) : 6;
   const left = Math.max(0, required - stamps);
   return (
-    <div className="relative overflow-hidden rounded-2xl bg-ink-2 text-white ring-1 ring-ink-line">
-      <div className="wrap-texture absolute inset-0" aria-hidden />
+    <div className="relative overflow-hidden rounded-2xl bg-beef text-cream">
       <div className={`relative ${compact ? "p-3.5" : "p-4"}`}>
         <div className="flex items-start justify-between gap-3">
           <div className="min-w-0">
-            <BrushLabel>Beef Kart</BrushLabel>
-            {name && <div className="mt-1.5 truncate text-xs text-smoke">{name}</div>}
+            <div className="font-display text-[17px] uppercase leading-none tracking-[0.02em]">
+              the beef <span className="text-ink">kart</span>
+            </div>
+            {name && <div className="mt-1.5 truncate text-xs font-medium text-ink/75">{name}</div>}
           </div>
-          <div className="t-num-lg text-beef" aria-label={`${stamps} / ${required} damga`}>
+          <div className="t-num-lg text-cream" aria-label={`${stamps} / ${required} damga`}>
             {stamps}
-            <span className="text-[18px] text-smoke">/{required}</span>
+            <span className="text-[17px] text-ink/45">/{required}</span>
           </div>
         </div>
 
@@ -76,7 +77,7 @@ export function StampCard({
               <div key={i} role="listitem" className="mx-auto aspect-square w-full max-w-12">
                 {filled ? (
                   <div
-                    className={`grid h-full w-full place-items-center rounded-full bg-beef text-ink ${freshIndex === i ? "animate-stamp" : ""}`}
+                    className={`grid h-full w-full place-items-center rounded-full bg-cream text-beef ${freshIndex === i ? "animate-stamp" : ""}`}
                     style={{ transform: `rotate(${rot}deg)`, ["--r" as string]: `${rot}deg` }}
                     aria-label={`${i + 1}. damga dolu`}
                   >
@@ -84,10 +85,10 @@ export function StampCard({
                   </div>
                 ) : (
                   <div
-                    className={`grid h-full w-full place-items-center rounded-full border-[1.5px] border-dashed ${next ? "border-beef/80" : "border-ink-line"}`}
+                    className={`grid h-full w-full place-items-center rounded-full border-[1.5px] border-dashed ${next ? "border-cream bg-cream/10" : "border-cream/45"}`}
                     aria-label={`${i + 1}. damga boş`}
                   >
-                    <span className={`font-display text-[13px] font-medium ${next ? "text-beef" : "text-smoke/50"}`}>{i + 1}</span>
+                    <span className={`font-display text-[13px] ${next ? "text-cream" : "text-cream/65"}`}>{i + 1}</span>
                   </div>
                 )}
               </div>
@@ -95,13 +96,13 @@ export function StampCard({
           })}
         </div>
 
-        <div className={`flex items-center gap-2.5 rounded-xl bg-beef px-3 text-ink ${compact ? "mt-3 py-2" : "mt-3.5 py-2.5"}`}>
-          <Gift className="h-4 w-4 shrink-0" />
+        <div className={`flex items-center gap-2.5 rounded-xl bg-ink px-3 text-cream ${compact ? "mt-3 py-2" : "mt-3.5 py-2.5"}`}>
+          <Gift className="h-4 w-4 shrink-0 text-beef" />
           <div className="min-w-0 flex-1 truncate text-[13px]">
             <span className="font-semibold">{required + 1}. sipariş hediye</span>
-            <span className="text-ink/70"> · {rewardName}</span>
+            <span className="text-smoke"> · {rewardName}</span>
           </div>
-          <div className="shrink-0 text-xs font-semibold">{left === 0 ? "Hazır!" : `${left} kaldı`}</div>
+          <div className="shrink-0 text-xs font-semibold text-beef">{left === 0 ? "Hazır!" : `${left} kaldı`}</div>
         </div>
       </div>
     </div>
@@ -131,7 +132,7 @@ export function Toasts() {
           key={t.id}
           role="status"
           className={`animate-rise pointer-events-auto max-w-sm rounded-xl px-3.5 py-2.5 text-[13px] font-medium shadow-lg ${
-            t.tone === "ok" ? "bg-ink text-white ring-1 ring-beef/40" : t.tone === "bad" ? "bg-bad text-white" : "bg-white text-ink ring-1 ring-black/10"
+            t.tone === "ok" ? "bg-ink text-cream ring-1 ring-beef/50" : t.tone === "bad" ? "bg-bad text-cream" : "bg-white text-ink ring-1 ring-black/10"
           }`}
         >
           {t.text}

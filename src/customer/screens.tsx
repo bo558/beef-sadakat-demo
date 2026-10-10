@@ -23,7 +23,7 @@ import {
   X,
 } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
-import { asset, BrushLabel, DemoBadge, QrImage, StampCard } from "../components/brand";
+import { asset, SectionLabel, DemoBadge, QrImage, StampCard } from "../components/brand";
 import {
   availableGrants,
   backupCode,
@@ -102,7 +102,7 @@ export function HomeScreen({ me, go, freshIndex }: ScreenProps) {
 
       {avail.length > 0 && (
         <button onClick={() => go("odul")} className="mt-3 flex w-full items-center gap-3 overflow-hidden rounded-xl bg-ink-2 p-2.5 text-left ring-1 ring-beef/35">
-          <img src={asset("brand/burger-ambalaj.jpg")} alt="" className="h-12 w-12 rounded-lg object-cover" />
+          <img src={asset("brand/burger-yakin.jpg")} alt="" className="h-12 w-12 rounded-lg object-cover" />
           <div className="min-w-0 flex-1">
             <div className="t-label text-beef">{avail.length} hediye hazır</div>
             <div className="t-h3 truncate">{state.rewards.find((x) => x.id === avail[0]!.rewardId)?.name}</div>
@@ -113,7 +113,7 @@ export function HomeScreen({ me, go, freshIndex }: ScreenProps) {
       )}
 
       <section className="mt-6">
-        <BrushLabel>Nasıl çalışır?</BrushLabel>
+        <SectionLabel>Nasıl çalışır?</SectionLabel>
         <ol className="mt-2.5 grid grid-cols-3 gap-2">
           {[
             { n: "01", t: "Sipariş ver", d: `${fmtTL(r.minSpend)} ve üzeri` },
@@ -131,19 +131,19 @@ export function HomeScreen({ me, go, freshIndex }: ScreenProps) {
 
       <section className="mt-6 overflow-hidden rounded-xl bg-ink-2 ring-1 ring-ink-line">
         <div className="relative h-32">
-          <img src={asset("brand/burger-renkli-duvar.jpg")} alt="Renkli mekân duvarı önünde BEEF burger" className="h-full w-full object-cover object-[50%_45%]" />
+          <img src={asset("brand/ozel-soslar.jpg")} alt="THE BEEF özel sosları: kuru domates aioli, ballı hardal, rose deep" className="h-full w-full object-cover object-[50%_55%]" />
           <div className="absolute inset-0 bg-gradient-to-t from-ink-2 via-ink-2/10 to-transparent" />
-          <DemoBadge className="absolute right-2.5 top-2.5 bg-ink/70 text-white" />
+          <DemoBadge className="absolute right-2.5 top-2.5 bg-ink/70 text-cream" />
         </div>
         <div className="-mt-4 p-3.5 pt-0">
-          <div className="t-h2 relative">Renkli mekân, güçlü lezzet</div>
-          <p className="mt-0.5 text-xs text-smoke">Duyuru ve kampanya alanı. İçerikler panelden yönetilecek.</p>
+          <div className="t-h2 relative">Burger yapımı özel soslarımız</div>
+          <p className="mt-0.5 text-xs text-smoke">Kuru domates aioli · ballı hardal · rose deep. Duyuru alanı; içerikler panelden yönetilecek.</p>
         </div>
       </section>
 
       <section className="mt-6">
         <div className="flex items-center justify-between">
-          <BrushLabel>Son hareketler</BrushLabel>
+          <SectionLabel>Son hareketler</SectionLabel>
           <button onClick={() => go("gecmis")} className="text-xs font-semibold text-beef">
             Tümü
           </button>
@@ -188,7 +188,7 @@ export function CardScreen({ me, go, freshIndex }: ScreenProps) {
           </div>
           <div className="text-right text-xs text-smoke">
             {bal >= r.stampsRequired ? "Ödülün hazır" : `${r.stampsRequired - bal} sipariş sonra`}
-            <div className="t-h3 text-white">{rewardName}</div>
+            <div className="t-h3 text-cream">{rewardName}</div>
           </div>
         </div>
         <div className="mt-2.5 h-2 overflow-hidden rounded-full bg-ink-3">
@@ -204,7 +204,7 @@ export function CardScreen({ me, go, freshIndex }: ScreenProps) {
           <ol className="relative mt-2 grid gap-0 border-l-[1.5px] border-dashed border-ink-line pl-4">
             {cardEntries.map((e) => (
               <li key={e.id} className="relative py-2">
-                <span className={`absolute -left-[22px] top-3 h-2.5 w-2.5 rounded-full ${e.amount > 0 ? "bg-beef" : "bg-wall-orange"}`} />
+                <span className={`absolute -left-[22px] top-3 h-2.5 w-2.5 rounded-full ${e.amount > 0 ? "bg-beef" : "bg-alert"}`} />
                 <div className="flex items-baseline justify-between gap-3">
                   <span className="text-[13px] font-semibold">
                     {e.type === "welcome" ? `+${e.amount} hoş geldin damgası` : e.type === "reversal" ? "−1 düzeltme" : "+1 damga"}
@@ -248,7 +248,7 @@ function Rule({ icon, children }: { icon: React.ReactNode; children: React.React
   return (
     <li className="flex items-start gap-2.5">
       <span className="grid h-6 w-6 shrink-0 place-items-center rounded-full bg-ink-3 text-beef">{icon}</span>
-      <span className="pt-0.5 text-white/85">{children}</span>
+      <span className="pt-0.5 text-cream/85">{children}</span>
     </li>
   );
 }
@@ -274,7 +274,7 @@ export function QrScreen({ me, onDemoScan }: ScreenProps & { onDemoScan: () => v
       <div className="mt-4 w-full max-w-[300px] rounded-2xl bg-white p-4 text-ink">
         <div className="flex items-center justify-between text-left">
           <div>
-            <div className="t-label text-ink/50">Beef Kart</div>
+            <div className="t-label text-ink/50">The Beef Kart</div>
             <div className="text-[13px] font-semibold">{me.name}</div>
           </div>
           <div className="rounded-full bg-beef px-2.5 py-0.5 font-display text-sm font-semibold tabular">
@@ -364,7 +364,7 @@ export function RewardsScreen({ me, go }: ScreenProps) {
             <li key={g.id} className={`overflow-hidden rounded-xl ring-1 ${g.status === "available" ? "bg-ink-2 ring-beef/35" : "bg-ink-2/60 ring-ink-line"}`}>
               <div className="flex gap-3 p-2.5">
                 {rw?.image ? (
-                  <img src={asset(rw.image)} alt={rw.name} className={`h-[72px] w-[72px] shrink-0 rounded-lg object-cover ${g.status !== "available" ? "grayscale" : ""}`} />
+                  <img src={asset(rw.image)} alt={rw.name} className={`h-[72px] w-[72px] shrink-0 rounded-lg object-cover object-bottom ${g.status !== "available" ? "grayscale" : ""}`} />
                 ) : (
                   <div className="grid h-[72px] w-[72px] shrink-0 place-items-center rounded-lg bg-beef text-ink">
                     <Hamburger className="h-7 w-7" />
@@ -379,7 +379,7 @@ export function RewardsScreen({ me, go }: ScreenProps) {
                     ) : g.status === "redeemed" ? (
                       <span className="text-smoke">Kullanıldı · {fmtDate(g.redeemedAt!)}</span>
                     ) : (
-                      <span className="text-wall-orange">Süresi doldu</span>
+                      <span className="text-alert">Süresi doldu</span>
                     )}
                   </div>
                 </div>
@@ -438,14 +438,14 @@ export function RewardsScreen({ me, go }: ScreenProps) {
             </div>
           ) : (
             <div className="py-4 text-center">
-              <div className="animate-pop mx-auto grid h-16 w-16 place-items-center rounded-full bg-ok text-white">
+              <div className="animate-pop mx-auto grid h-16 w-16 place-items-center rounded-full bg-ok text-cream">
                 <Check className="h-8 w-8" strokeWidth={3} />
               </div>
               <div className="t-h1 mt-3">Afiyet olsun!</div>
               <p className="mt-1 text-sm text-ink/60">
                 {reward(openGrant.rewardId)?.name} · {openGrant.redeemedAt ? fmtDateTime(openGrant.redeemedAt) : ""}
               </p>
-              <button onClick={() => setOpen(null)} className="mt-5 h-11 w-full rounded-lg bg-ink text-sm font-semibold text-white">
+              <button onClick={() => setOpen(null)} className="mt-5 h-11 w-full rounded-lg bg-ink text-sm font-semibold text-cream">
                 Tamam
               </button>
             </div>
@@ -512,7 +512,7 @@ function ActivityRow({ a }: { a: Activity }) {
     adjust: <RotateCcw className="h-4 w-4" />,
   }[a.kind];
   const tone =
-    a.kind === "convert" || a.kind === "redeem" ? "bg-white text-ink" : a.kind === "reversal" || a.kind === "adjust" ? "bg-wall-orange/20 text-wall-orange" : "bg-ink-3 text-beef";
+    a.kind === "convert" || a.kind === "redeem" ? "bg-white text-ink" : a.kind === "reversal" || a.kind === "adjust" ? "bg-alert/20 text-alert" : "bg-ink-3 text-beef";
   return (
     <li className="flex items-center gap-3 py-2.5">
       <span className={`grid h-8 w-8 shrink-0 place-items-center rounded-full ${tone}`}>{icon}</span>
@@ -668,9 +668,9 @@ function Row({ icon, title, sub, chevron, danger, onClick }: { icon: React.React
   const C = onClick ? "button" : "div";
   return (
     <C onClick={onClick} className="flex w-full items-center gap-3 px-3.5 py-3 text-left">
-      <span className={danger ? "text-wall-orange" : "text-beef"}>{icon}</span>
+      <span className={danger ? "text-alert" : "text-beef"}>{icon}</span>
       <span className="min-w-0 flex-1">
-        <span className={`block text-[13px] font-semibold ${danger ? "text-wall-orange" : ""}`}>{title}</span>
+        <span className={`block text-[13px] font-semibold ${danger ? "text-alert" : ""}`}>{title}</span>
         <span className="block text-[11px] text-smoke">{sub}</span>
       </span>
       {chevron && <ChevronRight className="h-4 w-4 text-smoke" />}

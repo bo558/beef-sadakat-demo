@@ -28,7 +28,7 @@ export function Onboarding() {
     return (
       <div className="relative flex min-h-full flex-col bg-ink">
         <div className="relative h-[54%] min-h-[300px] overflow-hidden">
-          <img src={asset("brand/burger-ambalaj.jpg")} alt="BEEF ambalaj kâğıdı üzerinde burger ve patates" className="h-full w-full object-cover" />
+          <img src={asset("brand/burger-yakin.jpg")} alt="THE BEEF burger, yakın çekim" className="h-full w-full object-cover" />
           <div className="absolute inset-0 bg-gradient-to-b from-ink/50 via-transparent to-ink" />
           <div className="absolute left-4 top-[max(14px,env(safe-area-inset-top))]">
             <BrandLogo size="md" />
@@ -38,17 +38,17 @@ export function Onboarding() {
           <h1 className="t-display text-[32px] leading-[1.06] text-balance">
             <span className="text-beef">Her burger</span>
             <br />
-            bir damga!
+            <span className="t-outline">bir damga!</span>
           </h1>
           <p className="mt-2.5 text-[13.5px] leading-relaxed text-smoke">
-            {r.stampsRequired} damgayı doldur, {r.stampsRequired + 1}. siparişte <b className="font-semibold text-white">{reward?.name ?? "ödül"}</b> bizden.
+            {r.stampsRequired} damgayı doldur, {r.stampsRequired + 1}. siparişte <b className="font-semibold text-cream">{reward?.name ?? "ödül"}</b> bizden.
             {r.welcomeStamps > 0 && <> Üye olana ilk {r.welcomeStamps} damga hediye.</>}
           </p>
           <div className="mt-auto grid gap-2 pt-6">
             <button onClick={() => setStep("phone")} className="flex h-12 items-center justify-center gap-2 rounded-xl bg-beef text-sm font-semibold text-ink active:scale-[0.98]">
               Telefonla devam et <ArrowRight className="h-4 w-4" />
             </button>
-            <button onClick={loginDemo} className="h-11 rounded-xl border border-ink-line text-[13px] font-medium text-white/90 hover:bg-ink-2">
+            <button onClick={loginDemo} className="h-11 rounded-xl border border-ink-line text-[13px] font-medium text-cream/90 hover:bg-ink-2">
               Örnek üye ile gez (Ece, 7 damga)
             </button>
           </div>
@@ -76,7 +76,7 @@ export function Onboarding() {
             className="h-full min-w-0 flex-1 bg-transparent text-[16px] font-semibold tracking-wider outline-none placeholder:text-ink-line focus-visible:outline-none tabular"
           />
         </div>
-        {digits.length > 0 && !phoneOk && <p className="mt-1.5 text-xs text-wall-orange">5 ile başlayan 10 haneli cep numaranı gir.</p>}
+        {digits.length > 0 && !phoneOk && <p className="mt-1.5 text-xs text-alert">5 ile başlayan 10 haneli cep numaranı gir.</p>}
         <div className="mt-3 rounded-lg bg-beef/10 px-3 py-2.5 text-xs leading-relaxed text-beef ring-1 ring-beef/25">
           Demo: gerçek numaranı girmene gerek yok. Bilgiler hiçbir yere gönderilmez, yalnızca bu tarayıcıda kalır.
           <button type="button" onClick={() => setPhone("5000000099")} className="mt-1 block font-semibold underline underline-offset-4">
@@ -108,7 +108,7 @@ export function Onboarding() {
             setOtpError("");
           }}
         />
-        {otpError && <p className="mt-2 text-xs text-wall-orange">{otpError}</p>}
+        {otpError && <p className="mt-2 text-xs text-alert">{otpError}</p>}
         <button onClick={() => setOtp(DEMO_OTP)} className="mt-3 self-start text-xs font-medium text-smoke underline underline-offset-4">
           Demo kodunu doldur
         </button>
@@ -140,7 +140,7 @@ export function Onboarding() {
         />
         <div className="mt-4 grid gap-2">
           <Check2 id="ob-kvkk" checked={kvkk} onChange={setKvkk}>
-            <b className="font-semibold text-white">KVKK Aydınlatma Metni</b>'ni okudum. <span className="text-smoke">(zorunlu)</span>
+            <b className="font-semibold text-cream">KVKK Aydınlatma Metni</b>'ni okudum. <span className="text-smoke">(zorunlu)</span>
           </Check2>
           <Check2 id="ob-mkt" checked={marketing} onChange={setMarketing}>
             Kampanya ve fırsatlardan SMS ile haberdar olmak istiyorum. <span className="text-smoke">(isteğe bağlı · İYS)</span>
@@ -173,7 +173,7 @@ export function Onboarding() {
         <div className="animate-pop mx-auto grid h-20 w-20 place-items-center rounded-full bg-ink text-beef">
           <Gift className="h-9 w-9" />
         </div>
-        <h1 className="t-display mt-5 text-[32px]">
+        <h1 className="t-display mt-5 text-[32px] text-cream">
           Hoş geldin
           <br />
           {name.trim().split(" ")[0]}!
@@ -245,7 +245,7 @@ function Check2({ id, checked, onChange, children }: { id: string; checked: bool
       <span className={`mt-0.5 grid h-[18px] w-[18px] shrink-0 place-items-center rounded ${checked ? "bg-beef text-ink" : "ring-[1.5px] ring-smoke/60"}`}>
         {checked && <Check className="h-3 w-3" strokeWidth={3} />}
       </span>
-      <span className="text-white/90">{children}</span>
+      <span className="text-cream/90">{children}</span>
     </label>
   );
 }

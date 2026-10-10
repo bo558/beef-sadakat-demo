@@ -20,7 +20,7 @@ export const DEFAULT_REWARDS: Reward[] = [
     name: "Burger Menü",
     description: "Menüdeki standart burgerlerden biri + patates + içecek",
     cap: 450,
-    image: "brand/burger-ambalaj.jpg",
+    image: "brand/burger-yakin.jpg",
     active: true,
   },
   {
@@ -28,7 +28,7 @@ export const DEFAULT_REWARDS: Reward[] = [
     name: "Burger",
     description: "Menüdeki standart burgerlerden biri",
     cap: 380,
-    image: "brand/burger-renkli-duvar.jpg",
+    image: "brand/double-mexican.jpg",
     active: true,
   },
   {
@@ -41,17 +41,17 @@ export const DEFAULT_REWARDS: Reward[] = [
 ];
 
 export const DEFAULT_BRANCHES: Branch[] = [
-  { id: "br-bursa", name: "Bursa", city: "Bursa", address: "Örnek adres · Nilüfer", active: true },
-  { id: "br-gokceada", name: "Gökçeada", city: "Çanakkale", address: "Örnek adres · Merkez", active: true },
+  { id: "br-cerkezkoy", name: "Çerkezköy", city: "Tekirdağ", address: "Eska Premium Altı · Çerkezköy", active: true },
+  { id: "br-ornek", name: "Örnek şube", city: "—", address: "Çok şube özelliğini göstermek için örnek", active: true },
   { id: "br-yeni", name: "Yeni franchise şubesi", city: "—", address: "Açılış planlanıyor (örnek)", active: false },
 ];
 
 export const DEFAULT_STAFF: Staff[] = [
-  { id: "st-ayse", name: "Ayşe K.", role: "admin", branchIds: ["br-bursa", "br-gokceada", "br-yeni"], active: true },
-  { id: "st-mert", name: "Mert A.", role: "manager", branchIds: ["br-bursa"], active: true },
-  { id: "st-can", name: "Can D.", role: "staff", branchIds: ["br-bursa"], active: true },
-  { id: "st-selin", name: "Selin T.", role: "staff", branchIds: ["br-gokceada"], active: true },
-  { id: "st-emre", name: "Emre Y.", role: "staff", branchIds: ["br-gokceada"], active: false },
+  { id: "st-ayse", name: "Ayşe K.", role: "admin", branchIds: ["br-cerkezkoy", "br-ornek", "br-yeni"], active: true },
+  { id: "st-mert", name: "Mert A.", role: "manager", branchIds: ["br-cerkezkoy"], active: true },
+  { id: "st-can", name: "Can D.", role: "staff", branchIds: ["br-cerkezkoy"], active: true },
+  { id: "st-selin", name: "Selin T.", role: "staff", branchIds: ["br-ornek"], active: true },
+  { id: "st-emre", name: "Emre Y.", role: "staff", branchIds: ["br-ornek"], active: false },
 ];
 
 export const ROLE_LABEL: Record<Staff["role"], string> = {
