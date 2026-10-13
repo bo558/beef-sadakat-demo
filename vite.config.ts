@@ -5,6 +5,8 @@ import tailwindcss from "@tailwindcss/vite";
 export default defineConfig({
   // Göreli temel yol: GitHub Pages'in /depo-adi/ alt yolunda da, yerelde de çalışır (hash yönlendirme sayesinde).
   base: "./",
+  publicDir: "brand-assets/thebeef",
   plugins: [react(), tailwindcss()],
   server: { host: "127.0.0.1", port: 5173, strictPort: true },
+  preview: { host: "127.0.0.1", port: 5273, strictPort: true },
 });

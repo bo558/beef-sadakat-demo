@@ -1,61 +1,30 @@
-import type { Branch, ProgramRules, Reward, Staff } from "./types";
+import type { ProgramRules, Staff } from "./types";
 
-/**
- * TASLAK PROGRAM KURALLARI — kesinleşmedi.
- * Panelde "Kampanya ve ödüller" ekranından değiştirilebilir.
- */
+/** Onaylanan program: sipariş başına 1 damga, 10 damga = 1 Burger Menü. */
 export const DEFAULT_RULES: ProgramRules = {
   stampsRequired: 10,
-  welcomeStamps: 2,
-  minSpend: 300,
-  cooldownMinutes: 120,
-  rewardExpiryDays: 60,
-  stampExpiryMonths: 12,
-  rewardId: "rw-burger-menu",
+  rewardName: "Burger Menü",
 };
 
-export const DEFAULT_REWARDS: Reward[] = [
-  {
-    id: "rw-burger-menu",
-    name: "Burger Menü",
-    description: "Menüdeki standart burgerlerden biri + patates + içecek",
-    cap: 450,
-    image: "brand/burger-yakin.jpg",
-    active: true,
-  },
-  {
-    id: "rw-burger",
-    name: "Burger",
-    description: "Menüdeki standart burgerlerden biri",
-    cap: 380,
-    image: "brand/double-mexican.jpg",
-    active: true,
-  },
-  {
-    id: "rw-patates",
-    name: "Patates",
-    description: "Porsiyon patates kızartması",
-    cap: 120,
-    active: false,
-  },
-];
+/** Sabit kurallar (ekranda ayar olarak gösterilmez). */
+export const REWARD_VALID_DAYS = 90;
+/** Aynı müşteriye arka arkaya damga verilmesini engelleyen bekleme süresi. */
+export const COOLDOWN_MINUTES = 120;
+/** Kasada "Geri al" süresi. */
+export const UNDO_WINDOW_MS = 10_000;
 
-export const DEFAULT_BRANCHES: Branch[] = [
-  { id: "br-cerkezkoy", name: "Çerkezköy", city: "Tekirdağ", address: "Eska Premium Altı · Çerkezköy", active: true },
-  { id: "br-ornek", name: "Örnek şube", city: "—", address: "Çok şube özelliğini göstermek için örnek", active: true },
-  { id: "br-yeni", name: "Yeni franchise şubesi", city: "—", address: "Açılış planlanıyor (örnek)", active: false },
-];
-
+/** ÖRNEK PERSONEL — demo PIN'leri giriş ekranında açıkça gösterilir. */
 export const DEFAULT_STAFF: Staff[] = [
-  { id: "st-ayse", name: "Ayşe K.", role: "admin", branchIds: ["br-cerkezkoy", "br-ornek", "br-yeni"], active: true },
-  { id: "st-mert", name: "Mert A.", role: "manager", branchIds: ["br-cerkezkoy"], active: true },
-  { id: "st-can", name: "Can D.", role: "staff", branchIds: ["br-cerkezkoy"], active: true },
-  { id: "st-selin", name: "Selin T.", role: "staff", branchIds: ["br-ornek"], active: true },
-  { id: "st-emre", name: "Emre Y.", role: "staff", branchIds: ["br-ornek"], active: false },
+  { id: "st-can", name: "Can D.", role: "staff", pin: "1111", active: true },
+  { id: "st-selin", name: "Selin T.", role: "staff", pin: "2222", active: true },
+  { id: "st-ayse", name: "Ayşe K.", role: "admin", pin: "9999", active: true },
+  { id: "st-emre", name: "Emre Y.", role: "staff", pin: "3333", active: false },
 ];
 
 export const ROLE_LABEL: Record<Staff["role"], string> = {
-  staff: "Personel",
-  manager: "Şube müdürü",
+  staff: "Kasa personeli",
   admin: "Yönetici",
 };
+
+/** Demo kısayollarıyla yapılan işlemler bu kimlikle kaydedilir (gerçek personel değildir). */
+export const DEMO_STAFF_ID = "demo";
